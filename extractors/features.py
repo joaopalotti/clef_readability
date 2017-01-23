@@ -40,6 +40,9 @@ def calc_chv(words, chv_map):
     return len(chvs), np.mean(chvs), np.sum(chvs)
 
 def find_encoding(doc_full_path):
+    # An alternative is using a package such as chardet:
+    # http://chardet.readthedocs.io/en/latest/usage.html
+
     encoding = "windows-1252"
 
     if doc_full_path.endswith(".gz"):
@@ -47,7 +50,7 @@ def find_encoding(doc_full_path):
     else:
         f = open(doc_full_path)
 
-    content = f.read()[0:1000]
+    content = f.read()[0:5000]
     regexp = re.search('charset=(?P<enc>[\s"\']*([^\s"\'/>]*))', content)
     if regexp is not None:
         encoding = regexp.group("enc")
@@ -55,7 +58,6 @@ def find_encoding(doc_full_path):
     return encoding
 
 def process(filename):
-    print "Processing: %s" % (filename)
 
     continuos = shared.getConst('continuos')
     preprocessing = shared.getConst('preprocessing')
@@ -78,6 +80,8 @@ def process(filename):
 
     encoding = find_encoding(filename).strip("\"\'")
 
+    print "Processing: %s. Encoding: %s" % (filename, encoding)
+
     if filename.endswith(".gz"):
         f = gzip.open(filename, mode="rb")
         reader = codecs.getreader(encoding)
@@ -86,6 +90,7 @@ def process(filename):
         # in case I dont use gzip
         f = codecs.open(filename, encoding=encoding, mode="r")
         lines = f.readlines()
+        #lines = f.readlines()[3:] # TODO: this will ignore first 3 boilerplate lines used in clef15 docs
 
     rows = []
     #filepath = lines[2]
@@ -104,10 +109,10 @@ def process(filename):
     f.close()
 
     content = ' '.join(rows)
-    print "Content Size: %d" % len(content)
+    #print "Content Size: %d" % len(content)
 
     calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing)
-    print "#Words after preprocessing: %d" % (len(calc.get_words()))
+    #print "#Words after preprocessing: %d" % (len(calc.get_words()))
 
     prefixes_found = count_prefixes(calc.get_words(), prefixes)
     sufixes_found = count_sufixes(calc.get_words(), sufixes)
@@ -126,7 +131,10 @@ def process(filename):
     readability_row.extend( [prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, mesh_found,\
             stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum] )
 
+    # Header: filename, number_chars, number_words, number_sentences, number_syllables, number_polysyllable_words, difficult_words, longer_4, longer_6, longer_10, longer_13, flesch_reading_ease, flesch_kincaid_grade_level, coleman_liau_index, gunning_fog_index, smog_index, ari_index, lix_index, dale_chall_score, prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum
+
     csv_writer.writerow(readability_row)
+    csv_file.flush()
     csv_file.close()
     print "File %s saved." % (outfilename)
     return 1
@@ -142,8 +150,8 @@ if __name__ == "__main__":
         print "USAGE: python %s [-f] <PATH_TO_DATA> <OUT_DIR>" % (script_name)
         sys.exit(0)
 
-    continuos=True
-    preprocessing = "justext"
+    continuos=True            # Options: True, False
+    preprocessing = "justext" # Options: justext, bs4
 
     print "PARAMETERS: ", sys.argv
     path_to_data = sys.argv[1]
@@ -176,15 +184,8 @@ if __name__ == "__main__":
     chv_map = [f.strip().split(",") for f in codecs.open(chv_dict_file, "r", encoding="utf8").readlines()]
     chv_map = [(a, float(b)) for a,b in chv_map]
 
-    #files = iglob(path_to_data + "/*")
     files = glob.iglob(path_to_data + "/*")
     #print "Processing %d files..." % (len(files))
-
-    #csv_writer.writerow(["filename", "part", "flesch_reading_ease", "flesch_kincaid_grade_level", "coleman_liau_index",\
-    #                    "gunning_fog_index", "smog_index", "ari_index", "lix_index", "dale_chall_score",\
-    #                    "number_chars", "number_words", "number_sentences", "number_syllables", "number_polysyllable_words",\
-    #                    "difficult_words", "longer_4", "longer_6", "longer_10", "longer_13", "prefixes", "sufixes", "acronyms",\
-    #                    "numbers_found", "eng_found", "mesh_bag_found", "perc","loga"])
 
     shared.setConst(prefixes=prefixes)
     shared.setConst(sufixes=sufixes)
@@ -197,8 +198,7 @@ if __name__ == "__main__":
     shared.setConst(drugbank_dict=drugbank_dict)
     shared.setConst(icd_dict=icd_dict)
     shared.setConst(chv_map=chv_map)
-    #print files
-    #print futures.map(process, files)
+
     print sum(futures.map(process, files))
     #print sum(map(process, files))
 
