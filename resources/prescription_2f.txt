@@ -1,0 +1,145 @@
+aa, āā, ĀĀ	ana
+AAA	
+a.c.	ante cibum
+ad lib.	ad libitum
+admov.	admove
+agit	agita
+alt. h.	alternis horis
+a.m.m.	ad manu medicae
+a.m.	ante meridiem
+amp	
+amt	
+aq	aqua
+A.T.C.	
+BDS/bds	bis die sumendum
+bis	bis
+B.M.	
+BNF	
+bol.	bolus
+B.S.	
+B.S.A	
+BUCC	bucca
+cap., caps.	capsula
+c, c.	cum
+cib.	cibus
+cf	
+comp.	
+cr., crm	
+CST	
+D5W	
+D5NS	
+D.A.W.	
+dieb. alt.	diebus alternis
+dil.	
+disp.	
+div.	
+dL	
+d.t.d.	dentur tales doses
+D.W.	
+elix.	
+e.m.p.	ex modo prescripto
+emuls.	emulsum
+et	et
+eod	
+ex aq	ex aqua
+fl., fld.	
+ft.	fiat
+g	
+gr	
+gtt(s)	gutta(e)
+H	
+h, hr	hora
+ID	
+IM	
+IP	
+IV	
+IVP	
+IVPB	
+kg	
+L.A.S.	
+LCD	
+lin	linimentum
+liq	liquor
+lot.	
+MAE	
+mane	mane
+M.	misce
+m, min	minimum
+mcg	
+m.d.u.	more dicto utendus
+mEq	
+mg	
+mg/dL	
+mist.	mistura
+mitte	mitte
+mL	
+nebul	nebula
+N.M.T.	
+noct.	nocte
+non rep.	non repetatur
+NS	
+1/2NS	
+N.T.E.	
+o_2	
+od	omne in die
+om	omne mane
+on	omne nocte
+o.p.d.	
+oz	
+per	per
+p.c.	post cibum
+p.c.h.s.	post cibum et hora somni
+pig./pigm.	pigmentum
+p.m.	post meridiem
+p.r. or PR	per rectum
+PRN, prn	pro re nata
+pulv.	pulvis
+PV	per vaginam
+q	quaque
+q.a.d.	quaque alternis die
+q.a.m.	quaque die ante meridiem
+q.d.s.	quater die sumendus
+q.p.m.	quaque die post meridiem
+q.h.	quaque hora
+q.h.s.	quaque hora somni
+q.1 h, q.1°	quaque 1 hora
+qqh	quater quaque hora
+q.s.	quantum sufficiat
+QWK	
+rep., rept.	repetatur
+RL, R/L	
+s	sine
+s.a.	secundum artem
+s.i.d/SID	semel in die once a day
+sig	signa
+SL	
+S.O.B, SOB	
+sol	solutio
+s.o.s., si op. sit	si opus sit
+SNRI (antidepressant)	
+SSRI (antidepressant)	
+	
+stat	statim
+SubQ	
+supp	suppositorium
+susp	
+syr	syrupus
+tab	tabella
+tal., t	talus
+tbsp	
+t.d.s./TDS	ter die sumendum
+top.	
+T.P.N.	
+tr, tinc., tinct.	
+troche	trochiscus
+tsp	
+u.d., ut. dict.	ut dictum
+ung.	unguentum
+U.S.P.	
+vag	
+w	
+w/a	
+wf	
+w/o, s	
+X	
+Y.O.	

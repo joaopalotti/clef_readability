@@ -1,0 +1,460 @@
+AACOM	American Association of Colleges of Osteopathic Medicine
+AAHAM	American Association of Healthcare Administrative Management
+AAHP	American Association of Health Plans
+AAPCC	Average Adjusted Per Capita Cost
+AARP	American Association of Retired Persons
+ABN	Advance beneficiary notice
+ACA	Affordable Care Act
+ACGME	Accreditation Council for Graduate Medical Education
+ACHE	American College of Healthcare Executives
+ACO-Accountable care organization
+ACLS	Advanced Cardiovascular Life Support
+ACR	Adjusted community rating
+ACS	American Cancer Society … also American College of Surgeons
+ACU	Ambulatory care unit
+ADA	Americans with Disabilities Act … also American Diabetes Association
+ADC	Average daily census
+ADS	Alternative delivery system
+AGPA	American Group Practice Association
+AHA	American Hospital Association … or American Heart Association
+AHRQ	Agency for Healthcare Research and Quality
+AIDS	Acquired immune deficiency syndrome
+ALJ	Administrative law judge
+ALOS	Average length of stay
+AMA	American Medical Association
+AMCRA	American Medical Care and Review Association
+ANA	American Nurses Association
+AOA	American Osteopathic Association
+AONE	American Organization of Nurse Executives
+APC	Ambulatory Payment Classification
+APG	Ambulatory Patient Group
+APR-DRG	All payer refined diagnostic related group
+ARC	American Red Cross
+ASC	Ambulatory surgery center
+ASO	Administrative services only contract
+BBA	Balanced Budget Act of 1997
+BBRA	Balanced Budget Relief Act of 1999
+BCAA	Blue Cross Association of America
+BCBSI	Blue Cross/Blue Shield of Iowa now known as Wellmark Blue Cross Blue Shield of Iowa
+BLS	Basic Life Support
+BHAI	Behavioral Health Affiliate of Iowa
+BIA	Bureau of Indian Affairs
+BIPA	Benefits Improvement & Protection Act of 2000
+BLS	Bureau of Labor Statistics
+CAH	Critical access hospital
+Cahaba GBA	Cahaba Government Benefit Administrators, LLC (administers Medicare health insurance for the Centers for Medicare & Medicaid Services (CMS)
+CAHPS-Consumer Assessment of Healthcare Providers and Systems
+CAM	Complementary and alternative medicine
+CARF	Commission on Accreditation of Rehabilitation Facilities
+CAT	Computerized axial tomography
+CAA	Care area assessment
+CBSA	Core based statistical area
+CCI	Correct coding initiative
+CCR	Cost-to-charge ratio
+CCU	Cardiac care unit
+CDC	Centers for Disease Control and Prevention (U.S.)
+CHA	Catholic Health Association
+CHAMPUS	Civilian Health and Medical Program of the Uniformed Services
+CHAMPVA	Civilian Health and Medical Program of the Veterans Administration
+CICU	Cardiac intensive care unit
+CIPI	Capital input price index
+CISM	Critical incident stress management
+CLIA	Clinical Laboratory Improvement Act (1967) … also Clinical Laboratory Improvement Amendments (1988)
+CME	Continuing medical education
+CMHC	Community mental health center
+CMI	Case mix index
+CMP	Competitive medical plan … also Civil monetary penalty
+CMS	Centers for Medicare and Medicaid Services
+COB	Coordination of benefits
+COBRA	Consolidated Omnibus Budget Reconciliation Act of 1985
+COI	Certificate of Insurance
+CON	Certificate of Need
+COP	Condition of participation
+CORF	Comprehensive outpatient rehabilitative facility
+CPI	Consumer price index
+CPR	Customary, prevailing, and reasonable (charges) … also Cardiac pulmonary resuscitation
+CPT	Current Procedural Terminology
+CQI	Continuous quality improvement
+DEA	Drug Enforcement Administration
+DHPC	Direct Healthcare Professional Communication
+DHS	Department of Human Services (Iowa)
+DMAT	Disaster Medical Assistance Team
+DME	Durable medical equipment … also Direct medical education
+DNR	Department of Natural Resources … also Do not resuscitate … also Do not report
+DRA	Deficit Reduction Act of 2005
+DRG	Diagnosis-related group
+DSA	Disproportionate share adjustment
+DSH	Disproportionate share hospital
+EBP	Evidence-based practice
+ECF	Extended care facility
+EEOC	Equal Employment Opportunity Commission
+EHR	Electronic health record
+EMR	Electronic medical record
+EMS	Emergency medical services
+EMTALA	Emergency Medical Transfer Active Labor Act
+EOB	Explanation of benefits
+EOC	Episode of care … also Emergency operations center... also Explanation of coverage
+EOMB	Explanation of Medicare Benefits
+EPA	Environmental Protection Agency
+EPO	Exclusive Provider Organization
+EPSDT	Early periodic screening diagnosis and treatment program
+ER/ED	Emergency room/emergency department
+ERISA	Employee Retirement Income Security Act
+FAQ	Frequently asked questions
+FDA	Food and Drug Administration
+FEC	Freestanding emergency center
+FEHBP	Federal Employees Health Benefits Program
+FFS	Fee for service
+FFWU	Full fever work-up
+FI	Fiscal intermediary
+FPL	Federal Poverty Level
+FQHC	Federally Qualified Health Center
+FSA	Flexible Spending Accounts
+FTC	Federal Trade Commission
+FTE	Full-time equivalent
+GAF	Geographic adjustment factor
+GAO U.S.	General Accountability Office
+GHAA	Group Health Association of America
+GME	Graduate medical education
+GPCI	Geographic practice cost index
+HANYS	Healthcare Association of New York State
+HAWK-I	Healthy and Well Kids in Iowa
+HCPCS	Healthcare Common Procedure Coding System
+HEDIS	Health Plan Employer Data and Information Set
+HEICS	Hospital emergency incident command system
+HFMA	Healthcare Financial Management Association
+HHA	Home Health Agency
+HHR	Health human resources (or health workforce)
+HHS	Health and Human Services (Federal)
+HHSC	Health and Human Services Commission
+HIAA	Health Insurance Association of America
+HIM	Health information management
+HIPAA	Health Insurance Portability and Accountability Act
+HIPCs	Health Insurance Purchasing Cooperatives
+HIPPS-Health Insurance Prospective Payment System
+HMO	Health maintenance organization
+HPB	Historic payment basis
+HPCI	Health Policy Corporation of Iowa
+HPSA	Health Professional Shortage Area
+HQRM	Healthcare quality and resource management
+HSR	Hospital-specific rate
+IAHSA	Iowa Association of Homes and Services for the Aging
+ICD	International Classification of Diseases
+ICF/MR	Intermediate Care Facility for the Mentally Retarded
+ICN	Iowa Communications Network
+ICS	Incident command system
+ICU	Intensive care unit
+IDIA	Iowa Department of Inspections and Appeals
+IDN	Integrated Delivery Network
+IDPH	Iowa Department of Public Health
+IDS	Integrated delivery system
+IFMC	Iowa Foundation for Medical Care
+IHA	Iowa Hospital Association
+IHC	Iowa Healthcare Collaborative
+IHHCC	Iowa Hospital Home Care Council
+IHERF	Iowa Hospital Education & Research Foundation
+IHI	Institute for Healthcare Improvement
+IHO	Iowa Hospice Organization
+IHS	Indian Health Services
+IME	Indirect Medical Education … also Iowa Medicaid Enterprise
+IMGMA	Iowa Medical Group Management Association
+IMS	Iowa Medical Society
+INA	Iowa Nurses Association
+IOM	Institute of Medicine
+IOMA	Iowa Osteopathic Medical Association
+IONL	Iowa Organization of Nurse Leaders
+IPA	Independent Practice Association
+IPF	Inpatient psychiatric facility
+IRB	Institutional review board
+IRF	Inpatient rehabilitation facility
+ISMP	Institute for Safe Medication Practices
+ITC	Iowa Trauma Coordinators
+LAMA	Left against medical advice
+LCD	Local coverage determinations
+LOS	Length of stay
+LSA	Legislative Service Agency
+LTC	Long-term care
+MA	Medicare Advantage
+MAC	Medicare Administrative Contractor
+MB	Market basket
+MBI	Market basket index
+MCO	Managed care organization
+MDA	Muscular Dystrophy Association
+MDC	Major Diagnostic Category
+MDH	Medicare Dependent Hospital
+MDS	Minimum Data Set
+MedPAC	Medicare Payment Advisory Commission
+MEI	Medical economic index
+MFS	Medicare fee schedule
+MGCRB	Medicare Geographic Classification Review Board
+MLP	Mid-level practitioner
+MMA	Medicare Modernization Act of 2003
+MOB	Medical office building
+MRI	Magnetic resonance imaging
+MSA	Metropolitan statistical area
+MSO	Management service organization
+MUA	Medically underserved area
+MUP	Medically underserved population
+MVPS	Medicare volume performance standard
+NB	Newborn
+NBC	Nuclear, Biological, Chemical
+NCD	National coverage determination
+NCQA	National Committee for Quality Assurance
+NDMS	National Disaster Medical System
+NF	Nursing facility
+NIC	Neonatal intensive care
+NICU	Neonatal intensive care unit
+NIH	National Institutes of Health
+NIMS	National Incident Management System
+NLRB	National Labor Relations Board
+NP	Nurse practitioner
+NPI	National Provider Identifier
+NQF	National quality forum
+OASIS	Outcome and Assessment Information Set
+OBRA	Omnibus Budget Reconciliation Act
+ODS	Organized delivery system
+OIG	Office of Inspector General
+OMB	Office of Management and Budget
+OPO	Organ procurement organization
+OPP	Out-of-pocket payments
+OR	Operating room
+OSHA	Occupational Safety and Health Administration
+OT	Occupational therapy
+OTC	Over-the-counter
+PA	Physician assistant
+PACS	Picture archiving and communication system
+PCN	Primary care network
+PCP	Primary care physician (or primary care provider if the provider is an NP, PA, or other non-physician)
+PDL	Prescription drug list
+PDP	Prescription drug plan
+PET	Positron emission tomography
+PFFS	Private fee-for-service
+PHN	Public health nurse
+PHO	Physician hospital organization
+PHS	Public health services
+POS	Point of service
+PPE	Personal protective equipment
+PPI	Producer price index
+PPO	Preferred provider organization
+PPRC	Physician Payment Review Commission
+PPS	Prospective payment system
+PQRS-Physician Quality Reporting System
+PRO	Peer review organization
+PRRB	Provider reimbursement review board
+PSO	Provider sponsored organization
+PT	Physical therapy
+QA	Quality assurance
+QI	Quality improvement
+QIO	Quality improvement organizations
+RBRVS	Resource-based relative value scale
+RHC	Rural health clinic
+RPB 6	Regional Policy Board 6 (AHA)
+RUGs	Resource utilization groups
+RVS	Relative value scale
+RVU	Relative value unit
+SCH	Sole community hospital
+SCHIP	State Children's Health Insurance Program
+SEIU	Service Employees International Union
+SGR	Sustainable Growth Rate
+SMDA	Safe Medical Devices Act (1990)
+SNF	Skilled nursing facility
+SNS	Strategic National Stockpile
+SPECT	Single-photon-emission computerized tomography
+SSA	Social Security Administration
+SSI	Supplemental Security Income
+STHP	Short Term Health Plan
+TPA	Third-party administrator or third-party administration
+TQI	Total quality improvement
+TQM	Total quality management
+TRHCA	Tax Relief and Health Care Act of 2006
+UB-04	Uniform Billing Form, modified in 2004
+UB-92	Uniform Billing Form, modified in 1992
+UC	Urgi Center
+UCR	Usual, customary and reasonable (charges)
+UR	Utilization review
+USPHS	United States Public Health Service
+VA	Veterans Administration
+VBPM	Value-based payment modifier
+VHA	Voluntary Hospitals of America
+WHO	World Health Organization
+WIC	Women and infant children program
+
+Abd.	Abdominal
+ACLS	Advanced cardiac life support
+AED	Automated external defibrillator
+AF	Atrial fibrillation
+AI	Aortic insufficiency
+AIDS	Acquired immune deficiency syndrome
+ALS	Advanced life support
+AMA	Against medical advice
+ANP	Advanced nurse practitioner
+ART	Accredited record technician
+AS	Aortic stenosis
+ATLS	Advanced trauma life support
+BE	Barium enema
+BLS	Basic life support
+BMR	Basal metabolism rate
+BP	Blood pressure
+BTLS	Basic trauma life support
+BUN	Blood urea nitrogen
+Ca	Carcinoma
+CADAC	Certified alcohol and drug abuse counselor
+CBC	Com5ount
+CC	Chief complaint
+CISM	Critical incident stress management
+CMA-Certified Medical Assistant
+CMT-Certified Medication Technician
+CNM	Certified Nurse Midwife
+CNS	Central nervous system
+CPR	Cardiopulmonary resuscitation
+CRNA	Certified registered nurse anesthetist
+CVA	Cerebrovascular accident, a stroke
+CVI	Cerebrovascular insufficiency
+DC	Doctor of Chiropractic
+DD	Differential diagnosis
+DDS	Doctor of Dental Surgery
+DIFF.	Differential blood count
+DO	Doctor of Osteopathic Medicine
+DNR	Do not resuscitate; also Do not report
+DPM	Doctor of Podiatric Medicine
+DPT	Diphtheria, pertussis, tetanus
+D&C	Dilatation and curettage
+D&E	Dilatation and evacuation
+DSC	Doctor of Surgical Chiropody
+DVM	Doctor of Veterinary Medicine
+ECU	Environmental control unit
+EEG	Electroencephalogram
+EENT	Eye, ear, nose and throat
+EKG, ECG	Electrocardiogram
+EMG	Electromyogram
+EMS	Emergency medical service
+EMT	Emergency medical technician
+ENT	Ear nose and throat
+FACHE	Fellow of the American College of Healthcare Executives
+FBS	Fasting blood sugar
+FMG	Foreign medical graduate
+FSH	Follicle-stimulating hormone
+GB viz.	Gall bladder visualization
+GC	Gonococcal, gonorrhea
+GI	Gastrointestinal
+GP	General practitioner
+GU	Genitourinary
+Hgb.	Hemoglobin
+ICN	Intermediate care nursery
+IM	Intramuscular
+IP	Intraperitoneal
+IV	Intravenous
+IVP	Intravenous pyelogram (urogram)
+LPC	Licensed professional counselor
+LPN	Licensed practical nurse
+LPT	Licensed physical therapist
+LVN	Licensed vocational nurse
+MD	Doctor of Medicine
+mEq.	Milliequivalent
+MHA	Master of Hospital Administration Master of Health Administration
+MHSA	Master of Health Services Administration
+MI	Myocardial infarction; also Mitral insufficiency or Mental institution
+MOM	Milk of magnesia
+Mono	Mononucleosis
+MPA	Master of Public Administration
+MPH	Master of Public Health
+MS	Mitral stenosis; also Master of Science or Medical scientist
+MSN	Master of Science in Nursing
+MSW	Master of Social Work
+N	Normal
+NB	Newborn
+ND	Doctor of Naturopathic Medicine
+OB-GYN	Obstetrics and gynecology
+OD	Doctor of Optometry
+O.D.	Right eye
+O.S.	Left eye
+PA	Physician assistant; also Posterior–anterior
+P&A	Percussion and auscultation
+PALS	Pediatric advanced life support
+PAT	Paroxysmal Atrial Tachycardia
+PBI	Protein-bound iodine
+Ped.	Pediatrics; also Pediatrician
+pH	Expression of acidity or alkalinity. pH 7 is neutral;above 7 alkalinity increases; below 7 acidity decreases.
+Preemy	Premature infant
+PSA	Prostate-specific antigen
+RAD	Radiation-absorbed dose
+RBC	Red blood count
+SC	Subcutaneous
+SCIC	Significant change in condition
+SICU	Surgical intensive care unit
+SIDS	Sudden infant death syndrome
+SOB	Short of breath
+START	Simple triage and rapid transport
+Stat.	Immediately
+STD	Sexually transmitted disease
+T&A	Tonsillectomy and adenoidectomy
+TB	Tuberculosis
+Temp.	Temperature
+VD	Venereal disease
+VDRL	Serology
+WBC	White blood count
+
+ACIP	Advisory Committee on Immunization Practices
+ADPER	Acute disease prevention and emergency response
+AIIR	Airborne infection isolation room
+APHL	Association of Public Health Laboratories
+CADE	Center for Acute Disease Epidemiology
+CBRNE	Chemical, biological, radiological, nuclear and explosive
+CDOR	Center for disaster operations and response
+CIO	Chief information officer
+COG	Continuity of government
+COOP	Continuity of operations
+CIP	Critical infrastructure protection
+DOT	Department of Transportation
+DMAT	Disaster medical assistance team
+DMORT	Disaster Mortuary Operational Response Team
+DPI	Bureau of Disease Prevention and Immunization
+DPS	Department of Public Safety
+ECC	Emergency coordination center
+EMAC	Emergency Management Assistance Compact
+EOC	Emergency operations center
+EPI-X	Epidemic information exchange (national list serve)
+ER	Emergency room
+ESF	Emergency support functions
+ESF06	Mass care emergency support function
+ESF08	Health and medical services support function
+FEMA	Federal Emergency Management Agency
+HAN	Health Alert Network
+HAZMAT	Hazardous material
+HEPA	High-efficiency particulate air
+HHS	U.S. Department of Health and Human Services
+HERT	Hospital emergency response team
+HICPAC	Hospital infection control practices advisory committee
+HICS	Hospital incident command system
+HLSEM	Homeland security and emergency management
+HPAI	Highly pathogenic avian influenza
+IAC	Iowa Administrative Code
+IC	Incident commander
+ICC	Incident command center
+ICP	Infection control professional
+ICS	Incident command system
+IDAC	Infectious disease advisory committee
+IDALS	Iowa Department of Agriculture and Land Stewardship
+IISN	Iowa Influenza Surveillance Network
+JIC	Joint information center
+LMS	Learning management system
+LPHA	Local public health agency
+LRN	Laboratory Response Network
+ME	Medical examiner
+MMRS	Metropolitan medical response system
+NIMS	National Incident Management System
+NIPP	National Infrastructure Protection Plan
+NNDSS	Nationally Notifiable Disease Surveillance System
+NRP	National Response Plan
+PAPR	Personal air-purifying respirator
+PPE	Personal protective equipment
+SARS	Severe acute respiratory syndrome
+SEOC	State emergency operations center
+SME	State medical examiner
+SNS	Strategic National Stockpile
+TSA	Transportation Security Administration
+UHL	University of Iowa Hygienic Laboratory
+VAERS	Vaccine adverse events reporting system
+VFC	Vaccines for Children
+VMBIP	Vaccine Management Business Improvement Project
+WMD	Weapon of mass destruction
