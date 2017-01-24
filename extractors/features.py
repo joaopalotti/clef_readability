@@ -190,7 +190,6 @@ if __name__ == "__main__":
     shared.setConst(prefixes=prefixes)
     shared.setConst(sufixes=sufixes)
     shared.setConst(acronyms=acronyms)
-    shared.setConst(continuos=continuos)
     shared.setConst(outdir=outdir)
     shared.setConst(eng_dict=eng_dict)
     shared.setConst(mesh_dict=mesh_dict)
