@@ -177,8 +177,11 @@ if __name__ == "__main__":
     shared.setConst(continuous=continuous)
     shared.setConst(preprocessing=preprocessing)
 
-    print((sum(futures.map(process, files))))
+    total = (sum(futures.map(process, files)))
     #print(sum(map(process, files)))
 
-    print("Done!")
-
+    print()
+    print("*" * 30)
+    print(("Done! Processed %d documents. " % (total)))
+    print("*" * 30)
+    print()
