@@ -7,6 +7,7 @@ import csv
 from readcalc import readcalc
 from scoop import futures, shared
 import numpy as np
+import chardet
 
 resource_path = "../resources/"
 
@@ -38,8 +39,18 @@ def calc_chv(words, chv_map):
     return len(chvs), np.mean(chvs), np.sum(chvs)
 
 def find_encoding(doc_full_path):
-    # An alternative is using a package such as chardet:
     # http://chardet.readthedocs.io/en/latest/usage.html
+    # This method uses the traditional chardet to find out the encoding used in a file
+    if doc_full_path.endswith(".gz"):
+        f = gzip.open(doc_full_path, mode="rb")
+    else:
+        f = open(doc_full_path, mode="rb")
+
+    rawdata = f.read()
+    return chardet.detect(rawdata)["encoding"]
+
+def find_encoding_html(doc_full_path):
+    # This method tries to find the string "charset=XXX" set in most of the html files
 
     encoding = "windows-1252"
 
@@ -53,7 +64,7 @@ def find_encoding(doc_full_path):
     if regexp is not None:
         encoding = regexp.group("enc")
     f.close()
-    return encoding
+    return encoding.strip("\"\'")
 
 def process(filename):
 
@@ -73,18 +84,18 @@ def process(filename):
     chv_map = shared.getConst('chv_map')
 
     outfilename = outdir + "/" + filename.split("/")[-1]
+
     csv_file = open(outfilename, 'w')
     csv_writer = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 
-    encoding = find_encoding(filename).strip("\"\'")
-
+    encoding = find_encoding(filename)
     print(("Processing: %s. Encoding: %s" % (filename, encoding)))
 
     if filename.endswith(".gz"):
-        with gzip.open(filename, mode="r") as f:
+        with gzip.open(filename, ecoding=encoding, erroes="surrogateescape", mode="r") as f:
             content = str(f.read()) # Explicitly convert from bytes to str
     else:
-        with open(filename) as f:
+        with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
             content = f.read()
 
     calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing)
@@ -178,10 +189,11 @@ if __name__ == "__main__":
     shared.setConst(preprocessing=preprocessing)
 
     total = (sum(futures.map(process, files)))
-    #print(sum(map(process, files)))
+    #total = (sum(map(process, files)))
 
     print()
     print("*" * 30)
     print(("Done! Processed %d documents. " % (total)))
     print("*" * 30)
     print()
+
