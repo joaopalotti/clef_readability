@@ -92,7 +92,7 @@ def process(filename):
     print(("Processing: %s. Encoding: %s" % (filename, encoding)))
 
     if filename.endswith(".gz"):
-        with gzip.open(filename, ecoding=encoding, erroes="surrogateescape", mode="r") as f:
+        with gzip.open(filename, mode="rt", encoding=encoding, errors="surrogateescape") as f:
             content = str(f.read()) # Explicitly convert from bytes to str
     else:
         with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
