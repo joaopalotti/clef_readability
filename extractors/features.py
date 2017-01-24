@@ -59,7 +59,7 @@ def find_encoding(doc_full_path):
 
 def process(filename):
 
-    continuos = shared.getConst('continuos')
+    continuous = shared.getConst('continuous')
     preprocessing = shared.getConst('preprocessing')
 
     outdir = shared.getConst('outdir')
@@ -101,7 +101,7 @@ def process(filename):
             continue
         if row[-1] in string.punctuation:
             rows.append(row)
-        elif continuos:
+        elif continuous:
             rows.append(row)
         else:
             rows.append(row + ". ")
@@ -150,13 +150,13 @@ if __name__ == "__main__":
         print "USAGE: python %s [-f] <PATH_TO_DATA> <OUT_DIR>" % (script_name)
         sys.exit(0)
 
-    continuos=True            # Options: True, False
+    continuous=True            # Options: True, False
     preprocessing = "justext" # Options: justext, bs4
 
     print "PARAMETERS: ", sys.argv
     path_to_data = sys.argv[1]
     outdir = sys.argv[2]
-    print "Continuoes: %s, Preprocessing: %s" % (continuos, preprocessing)
+    print(("Continuoes: %s, Preprocessing: %s" % (continuous, preprocessing)))
 
     sufix_file = os.path.join(resource_path, "suffixes")
     prefix_file = os.path.join(resource_path, "prefixes")
@@ -198,8 +198,11 @@ if __name__ == "__main__":
     shared.setConst(icd_dict=icd_dict)
     shared.setConst(chv_map=chv_map)
 
-    print sum(futures.map(process, files))
-    #print sum(map(process, files))
+    shared.setConst(continuous=continuous)
+    shared.setConst(preprocessing=preprocessing)
+
+    print((sum(futures.map(process, files))))
+    #print(sum(map(process, files)))
 
     print "Done!"
 
