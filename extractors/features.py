@@ -2,10 +2,8 @@ import sys
 import gzip
 import re
 import os
-import codecs
 import glob
 import csv
-import string
 from readcalc import readcalc
 from scoop import futures, shared
 import numpy as np
@@ -13,23 +11,23 @@ import numpy as np
 resource_path = "../resources/"
 
 def count_acronyms(words, acronyms):
-    #print [w for w in words if w in acronyms]
+    #print([w for w in words if w in acronyms] )
     return sum((1 for w in words if w in acronyms))
 
 def count_prefixes(words, prefixes):
-    #print [w for p in prefixes for w in words if len(w) > 3 and w.lower().startswith(p)]
+    #print([w for p in prefixes for w in words if len(w) > 3 and w.lower().startswith(p)])
     return sum((1 for p in prefixes for w in words if len(w) > 3 and w.lower().startswith(p)))
 
 def count_sufixes(words, sufixes):
-    #print [w for s in sufixes for w in words if len(w) > 3 and w.lower().endswith(s)]
+    #print([w for s in sufixes for w in words if len(w) > 3 and w.lower().endswith(s)])
     return sum((1 for s in sufixes for w in words if len(w) > 3 and w.lower().endswith(s)))
 
 def count_numbers(words):
-    #print [w for w in words if w.isdigit()]
+    #print([w for w in words if w.isdigit()])
     return sum((1 for w in words if w.isdigit()))
 
 def count_dict_words(words, dic, min_size=0):
-    #print [w for w in words if w.lower() in dic]
+    #print([w for w in words if w.lower() in dic])
     return sum((1 for w in words if w.lower() in dic if len(w) > min_size))
 
 def calc_chv(words, chv_map):
@@ -51,7 +49,7 @@ def find_encoding(doc_full_path):
         f = open(doc_full_path)
 
     content = f.read()[0:5000]
-    regexp = re.search('charset=(?P<enc>[\s"\']*([^\s"\'/>]*))', content)
+    regexp = re.search('charset=(?P<enc>[\s"\']*([^\s"\'/>]*))', str(content))
     if regexp is not None:
         encoding = regexp.group("enc")
     f.close()
@@ -80,39 +78,17 @@ def process(filename):
 
     encoding = find_encoding(filename).strip("\"\'")
 
-    print "Processing: %s. Encoding: %s" % (filename, encoding)
+    print(("Processing: %s. Encoding: %s" % (filename, encoding)))
 
     if filename.endswith(".gz"):
-        f = gzip.open(filename, mode="rb")
-        reader = codecs.getreader(encoding)
-        lines = reader(f)
+        with gzip.open(filename, mode="rb") as f:
+            content = f.read()
     else:
-        # in case I dont use gzip
-        f = codecs.open(filename, encoding=encoding, mode="r")
-        lines = f.readlines()
-        #lines = f.readlines()[3:] # TODO: this will ignore first 3 boilerplate lines used in clef15 docs
-
-    rows = []
-    #filepath = lines[2]
-
-    for row in lines:
-        row = row.strip()
-        if len(row) == 0:
-            continue
-        if row[-1] in string.punctuation:
-            rows.append(row)
-        elif continuous:
-            rows.append(row)
-        else:
-            rows.append(row + ". ")
-
-    f.close()
-
-    content = ' '.join(rows)
-    #print "Content Size: %d" % len(content)
+        with open(filename) as f:
+            content = f.read()
 
     calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing)
-    #print "#Words after preprocessing: %d" % (len(calc.get_words()))
+    # print("#Words after preprocessing: %d" % (len(calc.get_words())))
 
     prefixes_found = count_prefixes(calc.get_words(), prefixes)
     sufixes_found = count_sufixes(calc.get_words(), sufixes)
@@ -136,7 +112,7 @@ def process(filename):
     csv_writer.writerow(readability_row)
     csv_file.flush()
     csv_file.close()
-    print "File %s saved." % (outfilename)
+    print(("File %s saved." % (outfilename)))
     return 1
 
 ## ========================================= ##
@@ -147,13 +123,13 @@ if __name__ == "__main__":
 
     if len(sys.argv) <= 1:
         script_name = os.path.basename(__file__)
-        print "USAGE: python %s [-f] <PATH_TO_DATA> <OUT_DIR>" % (script_name)
+        print(("USAGE: python %s [-f] <PATH_TO_DATA> <OUT_DIR>" % (script_name)))
         sys.exit(0)
 
     continuous=True            # Options: True, False
     preprocessing = "justext" # Options: justext, bs4
 
-    print "PARAMETERS: ", sys.argv
+    print(("PARAMETERS: ", sys.argv))
     path_to_data = sys.argv[1]
     outdir = sys.argv[2]
     print(("Continuoes: %s, Preprocessing: %s" % (continuous, preprocessing)))
@@ -169,23 +145,23 @@ if __name__ == "__main__":
     icd_dict_file = os.path.join(resource_path, "icd.bag")
     chv_dict_file = os.path.join(resource_path, "chv_concepts.csv")
 
-    sufixes = set([f.strip() for f in codecs.open(sufix_file, "r", encoding="utf8").readlines()])
+    sufixes = set([f.strip() for f in open(sufix_file, "r", encoding="utf8").readlines()])
     sufixes = set([f for f in sufixes if len(f) >= 4])
-    prefixes = set([f.strip() for f in codecs.open(prefix_file, "r", encoding="utf8").readlines()])
+    prefixes = set([f.strip() for f in open(prefix_file, "r", encoding="utf8").readlines()])
     prefixes = set([f for f in prefixes if len(f) >= 4])
-    acronyms = set([f.strip() for f in codecs.open(acronyms_file, "r", encoding="utf8").readlines()])
+    acronyms = set([f.strip() for f in open(acronyms_file, "r", encoding="utf8").readlines()])
 
-    eng_dict = set([f.strip().lower() for f in codecs.open(general_english_dict_file, "r", encoding="utf8").readlines()])
-    mesh_dict = set([f.strip().lower() for f in codecs.open(mesh_dict_file, "r", encoding="utf8").readlines()])
-    stopwords_dict = set([f.strip().lower() for f in codecs.open(stopwords_english_dict_file, "r", encoding="utf8").readlines()])
-    drugbank_dict = set([f.strip().lower() for f in codecs.open(drugbank_dict_file, "r", encoding="utf8").readlines()])
-    icd_dict = set([f.strip().lower() for f in codecs.open(icd_dict_file, "r", encoding="utf8").readlines()])
+    eng_dict = set([f.strip().lower() for f in open(general_english_dict_file, "r", encoding="utf8").readlines()])
+    mesh_dict = set([f.strip().lower() for f in open(mesh_dict_file, "r", encoding="utf8").readlines()])
+    stopwords_dict = set([f.strip().lower() for f in open(stopwords_english_dict_file, "r", encoding="utf8").readlines()])
+    drugbank_dict = set([f.strip().lower() for f in open(drugbank_dict_file, "r", encoding="utf8").readlines()])
+    icd_dict = set([f.strip().lower() for f in open(icd_dict_file, "r", encoding="utf8").readlines()])
 
-    chv_map = [f.strip().split(",") for f in codecs.open(chv_dict_file, "r", encoding="utf8").readlines()]
+    chv_map = [f.strip().split(",") for f in open(chv_dict_file, "r", encoding="utf8").readlines()]
     chv_map = [(a, float(b)) for a,b in chv_map]
 
     files = glob.iglob(path_to_data + "/*")
-    #print "Processing %d files..." % (len(files))
+    #print("Processing %d files..." % (len(files)))
 
     shared.setConst(prefixes=prefixes)
     shared.setConst(sufixes=sufixes)
@@ -204,5 +180,5 @@ if __name__ == "__main__":
     print((sum(futures.map(process, files))))
     #print(sum(map(process, files)))
 
-    print "Done!"
+    print("Done!")
 
