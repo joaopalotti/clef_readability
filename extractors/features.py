@@ -68,7 +68,7 @@ def find_encoding_html(doc_full_path):
 
 def process(filename):
 
-    continuous = shared.getConst('continuous')
+    forcePeriod = shared.getConst('forcePeriod')
     preprocessing = shared.getConst('preprocessing')
 
     outdir = shared.getConst('outdir')
@@ -98,7 +98,7 @@ def process(filename):
         with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
             content = f.read()
 
-    calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing)
+    calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing, forcePeriod=forcePeriod)
     # print("#Words after preprocessing: %d" % (len(calc.get_words())))
 
     prefixes_found = count_prefixes(calc.get_words(), prefixes)
@@ -137,13 +137,13 @@ if __name__ == "__main__":
         print(("USAGE: python %s [-f] <PATH_TO_DATA> <OUT_DIR>" % (script_name)))
         sys.exit(0)
 
-    continuous=True            # Options: True, False
-    preprocessing = "justext" # Options: justext, bs4
+    forcePeriod=True            # Options: True, False
+    preprocessing = "justext" # Options: justext, bs4, None
 
     print(("PARAMETERS: ", sys.argv))
     path_to_data = sys.argv[1]
     outdir = sys.argv[2]
-    print(("Continuoes: %s, Preprocessing: %s" % (continuous, preprocessing)))
+    print(("ForcePeriod: %s, Preprocessing: %s" % (forcePeriod, preprocessing)))
 
     sufix_file = os.path.join(resource_path, "suffixes")
     prefix_file = os.path.join(resource_path, "prefixes")
@@ -185,7 +185,7 @@ if __name__ == "__main__":
     shared.setConst(icd_dict=icd_dict)
     shared.setConst(chv_map=chv_map)
 
-    shared.setConst(continuous=continuous)
+    shared.setConst(forcePeriod=forcePeriod)
     shared.setConst(preprocessing=preprocessing)
 
     total = (sum(futures.map(process, files)))
