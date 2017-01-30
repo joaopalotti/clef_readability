@@ -77,6 +77,8 @@ def process(filename):
     sufixes = shared.getConst('sufixes')
     acronyms = shared.getConst('acronyms')
     eng_dict = shared.getConst('eng_dict')
+    med_dict = shared.getConst('med_dict')
+    eng_med_dict = shared.getConst('eng_med_dict')
     mesh_dict = shared.getConst('mesh_dict')
     stopwords_dict = shared.getConst('stopwords_dict')
     drugbank_dict = shared.getConst('drugbank_dict')
@@ -106,6 +108,8 @@ def process(filename):
     acronyms_found = count_acronyms(calc.get_words(), acronyms)
     numbers_found = count_numbers(calc.get_words())
     eng_found = count_dict_words(calc.get_words(), eng_dict)
+    med_found = count_dict_words(calc.get_words(), med_dict)
+    eng_med_found = count_dict_words(calc.get_words(), eng_med_dict)
     mesh_found = count_dict_words(calc.get_words(), mesh_dict, 3)
     stopwords_found = count_dict_words(calc.get_words(), stopwords_dict)
     drugbank_found = count_dict_words(calc.get_words(), drugbank_dict, 3)
@@ -115,10 +119,10 @@ def process(filename):
     filename = os.path.basename(filename)
 
     readability_row = [filename] + list(calc.get_all_metrics())
-    readability_row.extend( [prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, mesh_found,\
-            stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum] )
+    readability_row.extend( [prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, med_found, \
+            eng_med_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum] )
 
-    # Header: filename, number_chars, number_words, number_sentences, number_syllables, number_polysyllable_words, difficult_words, longer_4, longer_6, longer_10, longer_13, flesch_reading_ease, flesch_kincaid_grade_level, coleman_liau_index, gunning_fog_index, smog_index, ari_index, lix_index, dale_chall_score, prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum
+    # Header: filename, number_chars, number_words, number_sentences, number_syllables, number_polysyllable_words, difficult_words, longer_4, longer_6, longer_10, longer_13, flesch_reading_ease, flesch_kincaid_grade_level, coleman_liau_index, gunning_fog_index, smog_index, ari_index, lix_index, dale_chall_score, prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, med_found, eng_med_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum
 
     csv_writer.writerow(readability_row)
     csv_file.flush()
@@ -151,6 +155,7 @@ if __name__ == "__main__":
 
     stopwords_english_dict_file = os.path.join(resource_path, "stopwords.txt")
     general_english_dict_file = os.path.join(resource_path, "en-merged.dic")
+    openmedical_english_dict_file = os.path.join(resource_path, "en_US_OpenMedSpel_1.0.0.dic")
     mesh_dict_file = os.path.join(resource_path, "mesh.bag")
     drugbank_dict_file = os.path.join(resource_path, "drugbank.bag")
     icd_dict_file = os.path.join(resource_path, "icd.bag")
@@ -163,6 +168,8 @@ if __name__ == "__main__":
     acronyms = set([f.strip() for f in open(acronyms_file, "r", encoding="utf8").readlines()])
 
     eng_dict = set([f.strip().lower() for f in open(general_english_dict_file, "r", encoding="utf8").readlines()])
+    med_dict = set([f.strip().lower() for f in open(openmedical_english_dict_file, "r", encoding="utf8").readlines()])
+    eng_med_dict = eng_dict.union(med_dict)
     mesh_dict = set([f.strip().lower() for f in open(mesh_dict_file, "r", encoding="utf8").readlines()])
     stopwords_dict = set([f.strip().lower() for f in open(stopwords_english_dict_file, "r", encoding="utf8").readlines()])
     drugbank_dict = set([f.strip().lower() for f in open(drugbank_dict_file, "r", encoding="utf8").readlines()])
@@ -179,6 +186,8 @@ if __name__ == "__main__":
     shared.setConst(acronyms=acronyms)
     shared.setConst(outdir=outdir)
     shared.setConst(eng_dict=eng_dict)
+    shared.setConst(med_dict=med_dict)
+    shared.setConst(eng_med_dict=eng_med_dict)
     shared.setConst(mesh_dict=mesh_dict)
     shared.setConst(stopwords_dict=stopwords_dict)
     shared.setConst(drugbank_dict=drugbank_dict)
