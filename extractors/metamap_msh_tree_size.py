@@ -30,6 +30,9 @@ for filename in filenames[:]:
     n_sosy_concepts = 0
 
     for concept in concepts:
+        if concept.type != "MMI":
+            continue
+
         if len(concept.tree_codes) > 0:
             n_all_concepts += 1
             sum_tree_size_all += len(concept.tree_codes.strip().split('.'))
