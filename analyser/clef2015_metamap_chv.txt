@@ -1,3 +1,4 @@
+filename,n_chv_concepts,n_chv_dsyn_concepts,n_chv_sosy_concepts,avg_chv_value_all,avg_chv_alue_dsyn,avg_chv_value_sosy
 clueweb12-0300wb-46-20303,695,47,4,0.760,0.615,0.559
 clueweb12-0805wb-55-18453,63,1,0,0.775,0.888,0.000
 clueweb12-0200wb-63-11201,130,0,2,0.700,0.000,0.736
