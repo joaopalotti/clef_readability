@@ -1,0 +1,41 @@
+Data description:
+
+(1) I used KenLM to generate Language Models based on the 4 levels of readability of documents from CLEF2015.
+
+> cat analyser/clef2016_lm_from_clef2015.txt:
+-------------------------------------------------------------------------------
+filename,lm_clef15_vhard,lm_clef15_hard,lm_clef15_easy,lm_clef15_veasy
+clueweb12-1414wb-83-06172,-5078.398,-4906.414,-4958.608,-5047.708
+-------------------------------------------------------------------------------
+
+> cat analyser/clef2016_mean_unigrams_clef15.txt:
+-------------------------------------------------------------------------------
+filename,unigram_clef15_vhard,unigram_clef15_hard,unigram_clef15_easy,unigram_clef15_veasy
+clueweb12-1414wb-83-06172,-3.838,-3.808,-3.841,-3.859
+-------------------------------------------------------------------------------
+
+(2) Likewise I data from both Simple and English Wikipedias to generate 2 KenLM models. 
+
+> cat analyser/clef2016_lm_from_wiki.txt:
+-------------------------------------------------------------------------------
+filename,lm_simplewiki,lm_enwiki
+clueweb12-1414wb-83-06172,-4604.660,-4783.520
+-------------------------------------------------------------------------------
+
+> cat analyser/clef2016_mean_unigrams_wiki.txt
+-------------------------------------------------------------------------------
+filename,unigram_simplewiki,unigram_enwiki
+clueweb12-1414wb-83-06172,-3.446,-3.674
+-------------------------------------------------------------------------------
+
+(3) The LM results for CLEF 2015 and Wiki data is united in the following file:
+
+> cat analyser/clef2016_lm_from_clef15_wiki.txt
+-------------------------------------------------------------------------------
+filename,lm_clef15_vhard,lm_clef15_hard,lm_clef15_easy,lm_clef15_veasy,unigram_clef15_vhard,unigram_clef15_hard,unigram_clef15_easy,unigram_clef15_veasy,lm_simplewiki,lm_enwiki,unigram_simplewiki,unigram_enwiki
+clueweb12-1414wb-83-06172,-5078.398,-4906.414,-4958.608,-5047.708,-3.838,-3.808,-3.841,-3.859,-4604.66,-4783.52,-3.446,-3.674
+-------------------------------------------------------------------------------
+
+
+
+
