@@ -1,6 +1,9 @@
-Data description:
+Data description
+=================
 
-(1) I used KenLM to generate Language Models based on the 4 levels of readability of documents from CLEF2015.
+(1) Language Model Features:
+
+(1.a) I used KenLM to generate Language Models based on the 4 levels of readability of documents from CLEF2015.
 
 > cat analyser/clef2016_lm_from_clef2015.txt:
 -------------------------------------------------------------------------------
@@ -14,7 +17,7 @@ filename,unigram_clef15_vhard,unigram_clef15_hard,unigram_clef15_easy,unigram_cl
 clueweb12-1414wb-83-06172,-3.838,-3.808,-3.841,-3.859
 -------------------------------------------------------------------------------
 
-(2) Likewise I data from both Simple and English Wikipedias to generate 2 KenLM models. 
+(1.b) Likewise I data from both Simple and English Wikipedias to generate 2 KenLM models. 
 
 > cat analyser/clef2016_lm_from_wiki.txt:
 -------------------------------------------------------------------------------
@@ -28,7 +31,7 @@ filename,unigram_simplewiki,unigram_enwiki
 clueweb12-1414wb-83-06172,-3.446,-3.674
 -------------------------------------------------------------------------------
 
-(3) The LM results for CLEF 2015 and Wiki data is united in the following file:
+(1.c) The LM results for CLEF 2015 and Wiki data is united in the following file:
 
 > cat analyser/clef2016_lm_from_clef15_wiki.txt
 -------------------------------------------------------------------------------
@@ -36,6 +39,37 @@ filename,lm_clef15_vhard,lm_clef15_hard,lm_clef15_easy,lm_clef15_veasy,unigram_c
 clueweb12-1414wb-83-06172,-5078.398,-4906.414,-4958.608,-5047.708,-3.838,-3.808,-3.841,-3.859,-4604.66,-4783.52,-3.446,-3.674
 -------------------------------------------------------------------------------
 
+(2) Textual Features:
 
+(2.a) Textual features extracted using bs4:
+
+> cat analyser/bs4.txt
+-------------------------------------------------------------------------------
+filename,number_chars_bs4_fp,number_words_bs4_fp,number_sentences_bs4_fp,number_syllables_bs4_fp,number_polysyllable_words_bs4_fp,difficult_words_bs4_fp,longer_4_bs4_fp,longer_6_bs4_fp,longer_10_bs4_fp,longer_13_bs4_fp,flesch_reading_ease_bs4_fp,flesch_kincaid_grade_level_bs4_fp,coleman_liau_index_bs4_fp,gunning_fog_index_bs4_fp,smog_index_bs4_fp,ari_index_bs4_fp,lix_index_bs4_fp,dale_chall_score_bs4_fp,prefixes_found_bs4_fp,sufixes_found_bs4_fp,acronyms_found_bs4_fp,numbers_found_bs4_fp,eng_found_bs4_fp,mesh_found_bs4_fp,stopwords_found_bs4_fp,drugbank_found_bs4_fp,icd_found_bs4_fp,chv_num_bs4_fp,chv_mean_bs4_fp,chv_sum_bs4_fp,number_chars_bs4_nfp,number_words_bs4_nfp,number_sentences_bs4_nfp,number_syllables_bs4_nfp,number_polysyllable_words_bs4_nfp,difficult_words_bs4_nfp,longer_4_bs4_nfp,longer_6_bs4_nfp,longer_10_bs4_nfp,longer_13_bs4_nfp,flesch_reading_ease_bs4_nfp,flesch_kincaid_grade_level_bs4_nfp,coleman_liau_index_bs4_nfp,gunning_fog_index_bs4_nfp,smog_index_bs4_nfp,ari_index_bs4_nfp,lix_index_bs4_nfp,dale_chall_score_bs4_nfp,prefixes_found_bs4_nfp,sufixes_found_bs4_nfp,acronyms_found_bs4_nfp,numbers_found_bs4_nfp,eng_found_bs4_nfp,mesh_found_bs4_nfp,stopwords_found_bs4_nfp,drugbank_found_bs4_nfp,icd_found_bs4_nfp,chv_num_bs4_nfp,chv_mean_bs4_nfp,chv_sum_bs4_nfp
+clueweb12-0000tw-00-02610,8306,1439,358,2488,269,746,863,481,105,31,54.7545976897,6.37957149402,10.7339402363,9.08523610049,8.08108775901,7.76619766209,37.4455433436,8.38515162531,30,15,3,26,1072,698,425,346,429,414,0.815363663618,337.560556738,8306,1439,55,2488,269,746,863,481,105,31,32.2783531493,15.0157639775,17.0508269632,17.9428694169,15.7630667923,18.8382393076,59.5896266347,9.48349815655,30,15,3,26,1072,698,425,346,429,414,0.815363663618,337.560556738
+-------------------------------------------------------------------------------
+
+(2.b) Textual features extracted using justext:
+
+> cat analyser/justext.txt
+-------------------------------------------------------------------------------
+filename,number_chars_jst_fp,number_words_jst_fp,number_sentences_jst_fp,number_syllables_jst_fp,number_polysyllable_words_jst_fp,difficult_words_jst_fp,longer_4_jst_fp,longer_6_jst_fp,longer_10_jst_fp,longer_13_jst_fp,flesch_reading_ease_jst_fp,flesch_kincaid_grade_level_jst_fp,coleman_liau_index_jst_fp,gunning_fog_index_jst_fp,smog_index_jst_fp,ari_index_jst_fp,lix_index_jst_fp,dale_chall_score_jst_fp,prefixes_found_jst_fp,sufixes_found_jst_fp,acronyms_found_jst_fp,numbers_found_jst_fp,eng_found_jst_fp,mesh_found_jst_fp,stopwords_found_jst_fp,drugbank_found_jst_fp,icd_found_jst_fp,chv_num_jst_fp,chv_mean_jst_fp,chv_sum_jst_fp,number_chars_jst_nfp,number_words_jst_nfp,number_sentences_jst_nfp,number_syllables_jst_nfp,number_polysyllable_words_jst_nfp,difficult_words_jst_nfp,longer_4_jst_nfp,longer_6_jst_nfp,longer_10_jst_nfp,longer_13_jst_nfp,flesch_reading_ease_jst_nfp,flesch_kincaid_grade_level_jst_nfp,coleman_liau_index_jst_nfp,gunning_fog_index_jst_nfp,smog_index_jst_nfp,ari_index_jst_nfp,lix_index_jst_nfp,dale_chall_score_jst_nfp,prefixes_found_jst_nfp,sufixes_found_jst_nfp,acronyms_found_jst_nfp,numbers_found_jst_nfp,eng_found_jst_nfp,mesh_found_jst_nfp,stopwords_found_jst_nfp,drugbank_found_jst_nfp,icd_found_jst_nfp,chv_num_jst_nfp,chv_mean_jst_nfp,chv_sum_jst_nfp
+clueweb12-0000tw-00-02610,2006,405,16,621,53,155,197,109,14,0,49.8894791667,12.3752083333,12.1884938272,15.3595679012,13.5264551625,14.555287037,52.2260802469,7.29858641975,3,7,0,8,345,176,188,92,149,131,0.84265398516,110.387672056,2006,405,18,621,53,155,197,109,14,0,52.7441666667,11.2783333333,12.040345679,14.2345679012,12.9318204557,13.149037037,49.4135802469,7.15908641975,3,7,0,8,345,176,188,92,149,131,0.84265398516,110.387672056
+-------------------------------------------------------------------------------
+
+(2.c) Merge of 2.a and 2.b
+> cat analyser/text_features_preprocessing.txt
+-------------------------------------------------------------------------------
+filename,number_chars_jst_fp,number_words_jst_fp,number_sentences_jst_fp,number_syllables_jst_fp,number_polysyllable_words_jst_fp,difficult_words_jst_fp,longer_4_jst_fp,longer_6_jst_fp,longer_10_jst_fp,longer_13_jst_fp,flesch_reading_ease_jst_fp,flesch_kincaid_grade_level_jst_fp,coleman_liau_index_jst_fp,gunning_fog_index_jst_fp,smog_index_jst_fp,ari_index_jst_fp,lix_index_jst_fp,dale_chall_score_jst_fp,prefixes_found_jst_fp,sufixes_found_jst_fp,acronyms_found_jst_fp,numbers_found_jst_fp,eng_found_jst_fp,mesh_found_jst_fp,stopwords_found_jst_fp,drugbank_found_jst_fp,icd_found_jst_fp,chv_num_jst_fp,chv_mean_jst_fp,chv_sum_jst_fp,number_chars_jst_nfp,number_words_jst_nfp,number_sentences_jst_nfp,number_syllables_jst_nfp,number_polysyllable_words_jst_nfp,difficult_words_jst_nfp,longer_4_jst_nfp,longer_6_jst_nfp,longer_10_jst_nfp,longer_13_jst_nfp,flesch_reading_ease_jst_nfp,flesch_kincaid_grade_level_jst_nfp,coleman_liau_index_jst_nfp,gunning_fog_index_jst_nfp,smog_index_jst_nfp,ari_index_jst_nfp,lix_index_jst_nfp,dale_chall_score_jst_nfp,prefixes_found_jst_nfp,sufixes_found_jst_nfp,acronyms_found_jst_nfp,numbers_found_jst_nfp,eng_found_jst_nfp,mesh_found_jst_nfp,stopwords_found_jst_nfp,drugbank_found_jst_nfp,icd_found_jst_nfp,chv_num_jst_nfp,chv_mean_jst_nfp,chv_sum_jst_nfp,number_chars_bs4_fp,number_words_bs4_fp,number_sentences_bs4_fp,number_syllables_bs4_fp,number_polysyllable_words_bs4_fp,difficult_words_bs4_fp,longer_4_bs4_fp,longer_6_bs4_fp,longer_10_bs4_fp,longer_13_bs4_fp,flesch_reading_ease_bs4_fp,flesch_kincaid_grade_level_bs4_fp,coleman_liau_index_bs4_fp,gunning_fog_index_bs4_fp,smog_index_bs4_fp,ari_index_bs4_fp,lix_index_bs4_fp,dale_chall_score_bs4_fp,prefixes_found_bs4_fp,sufixes_found_bs4_fp,acronyms_found_bs4_fp,numbers_found_bs4_fp,eng_found_bs4_fp,mesh_found_bs4_fp,stopwords_found_bs4_fp,drugbank_found_bs4_fp,icd_found_bs4_fp,chv_num_bs4_fp,chv_mean_bs4_fp,chv_sum_bs4_fp,number_chars_bs4_nfp,number_words_bs4_nfp,number_sentences_bs4_nfp,number_syllables_bs4_nfp,number_polysyllable_words_bs4_nfp,difficult_words_bs4_nfp,longer_4_bs4_nfp,longer_6_bs4_nfp,longer_10_bs4_nfp,longer_13_bs4_nfp,flesch_reading_ease_bs4_nfp,flesch_kincaid_grade_level_bs4_nfp,coleman_liau_index_bs4_nfp,gunning_fog_index_bs4_nfp,smog_index_bs4_nfp,ari_index_bs4_nfp,lix_index_bs4_nfp,dale_chall_score_bs4_nfp,prefixes_found_bs4_nfp,sufixes_found_bs4_nfp,acronyms_found_bs4_nfp,numbers_found_bs4_nfp,eng_found_bs4_nfp,mesh_found_bs4_nfp,stopwords_found_bs4_nfp,drugbank_found_bs4_nfp,icd_found_bs4_nfp,chv_num_bs4_nfp,chv_mean_bs4_nfp,chv_sum_bs4_nfp
+-------------------------------------------------------------------------------
+
+(2.d) Merge of 2.a and 2.b + nonprocessed features:
+
+> cat analyser/text_features_allprocessing.txt
+-------------------------------------------------------------------------------
+filename,number_chars_jst_fp,number_words_jst_fp,number_sentences_jst_fp,number_syllables_jst_fp,number_polysyllable_words_jst_fp,difficult_words_jst_fp,longer_4_jst_fp,longer_6_jst_fp,longer_10_jst_fp,longer_13_jst_fp,flesch_reading_ease_jst_fp,flesch_kincaid_grade_level_jst_fp,coleman_liau_index_jst_fp,gunning_fog_index_jst_fp,smog_index_jst_fp,ari_index_jst_fp,lix_index_jst_fp,dale_chall_score_jst_fp,prefixes_found_jst_fp,sufixes_found_jst_fp,acronyms_found_jst_fp,numbers_found_jst_fp,eng_found_jst_fp,mesh_found_jst_fp,stopwords_found_jst_fp,drugbank_found_jst_fp,icd_found_jst_fp,chv_num_jst_fp,chv_mean_jst_fp,chv_sum_jst_fp,number_chars_jst_nfp,number_words_jst_nfp,number_sentences_jst_nfp,number_syllables_jst_nfp,number_polysyllable_words_jst_nfp,difficult_words_jst_nfp,longer_4_jst_nfp,longer_6_jst_nfp,longer_10_jst_nfp,longer_13_jst_nfp,flesch_reading_ease_jst_nfp,flesch_kincaid_grade_level_jst_nfp,coleman_liau_index_jst_nfp,gunning_fog_index_jst_nfp,smog_index_jst_nfp,ari_index_jst_nfp,lix_index_jst_nfp,dale_chall_score_jst_nfp,prefixes_found_jst_nfp,sufixes_found_jst_nfp,acronyms_found_jst_nfp,numbers_found_jst_nfp,eng_found_jst_nfp,mesh_found_jst_nfp,stopwords_found_jst_nfp,drugbank_found_jst_nfp,icd_found_jst_nfp,chv_num_jst_nfp,chv_mean_jst_nfp,chv_sum_jst_nfp,number_chars_bs4_fp,number_words_bs4_fp,number_sentences_bs4_fp,number_syllables_bs4_fp,number_polysyllable_words_bs4_fp,difficult_words_bs4_fp,longer_4_bs4_fp,longer_6_bs4_fp,longer_10_bs4_fp,longer_13_bs4_fp,flesch_reading_ease_bs4_fp,flesch_kincaid_grade_level_bs4_fp,coleman_liau_index_bs4_fp,gunning_fog_index_bs4_fp,smog_index_bs4_fp,ari_index_bs4_fp,lix_index_bs4_fp,dale_chall_score_bs4_fp,prefixes_found_bs4_fp,sufixes_found_bs4_fp,acronyms_found_bs4_fp,numbers_found_bs4_fp,eng_found_bs4_fp,mesh_found_bs4_fp,stopwords_found_bs4_fp,drugbank_found_bs4_fp,icd_found_bs4_fp,chv_num_bs4_fp,chv_mean_bs4_fp,chv_sum_bs4_fp,number_chars_bs4_nfp,number_words_bs4_nfp,number_sentences_bs4_nfp,number_syllables_bs4_nfp,number_polysyllable_words_bs4_nfp,difficult_words_bs4_nfp,longer_4_bs4_nfp,longer_6_bs4_nfp,longer_10_bs4_nfp,longer_13_bs4_nfp,flesch_reading_ease_bs4_nfp,flesch_kincaid_grade_level_bs4_nfp,coleman_liau_index_bs4_nfp,gunning_fog_index_bs4_nfp,smog_index_bs4_nfp,ari_index_bs4_nfp,lix_index_bs4_nfp,dale_chall_score_bs4_nfp,prefixes_found_bs4_nfp,sufixes_found_bs4_nfp,acronyms_found_bs4_nfp,numbers_found_bs4_nfp,eng_found_bs4_nfp,mesh_found_bs4_nfp,stopwords_found_bs4_nfp,drugbank_found_bs4_nfp,icd_found_bs4_nfp,chv_num_bs4_nfp,chv_mean_bs4_nfp,chv_sum_bs4_nfp,number_chars_nopreprocess,number_words_nopreprocess,number_sentences_nopreprocess,number_syllables_nopreprocess,number_polysyllable_words_nopreprocess,difficult_words_nopreprocess,longer_4_nopreprocess,longer_6_nopreprocess,longer_10_nopreprocess,longer_13_nopreprocess,flesch_reading_ease_nopreprocess,flesch_kincaid_grade_level_nopreprocess,coleman_liau_index_nopreprocess,gunning_fog_index_nopreprocess,smog_index_nopreprocess,ari_index_nopreprocess,lix_index_nopreprocess,dale_chall_score_nopreprocess,prefixes_found_nopreprocess,sufixes_found_nopreprocess,acronyms_found_nopreprocess,numbers_found_nopreprocess,eng_found_nopreprocess,mesh_found_nopreprocess,stopwords_found_nopreprocess,drugbank_found_nopreprocess,icd_found_nopreprocess,chv_num_nopreprocess,chv_mean_nopreprocess,chv_sum_nopreprocess
+-------------------------------------------------------------------------------
+
+(2.e)
 
 
