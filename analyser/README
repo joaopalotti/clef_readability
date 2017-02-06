@@ -70,6 +70,31 @@ filename,number_chars_jst_fp,number_words_jst_fp,number_sentences_jst_fp,number_
 filename,number_chars_jst_fp,number_words_jst_fp,number_sentences_jst_fp,number_syllables_jst_fp,number_polysyllable_words_jst_fp,difficult_words_jst_fp,longer_4_jst_fp,longer_6_jst_fp,longer_10_jst_fp,longer_13_jst_fp,flesch_reading_ease_jst_fp,flesch_kincaid_grade_level_jst_fp,coleman_liau_index_jst_fp,gunning_fog_index_jst_fp,smog_index_jst_fp,ari_index_jst_fp,lix_index_jst_fp,dale_chall_score_jst_fp,prefixes_found_jst_fp,sufixes_found_jst_fp,acronyms_found_jst_fp,numbers_found_jst_fp,eng_found_jst_fp,mesh_found_jst_fp,stopwords_found_jst_fp,drugbank_found_jst_fp,icd_found_jst_fp,chv_num_jst_fp,chv_mean_jst_fp,chv_sum_jst_fp,number_chars_jst_nfp,number_words_jst_nfp,number_sentences_jst_nfp,number_syllables_jst_nfp,number_polysyllable_words_jst_nfp,difficult_words_jst_nfp,longer_4_jst_nfp,longer_6_jst_nfp,longer_10_jst_nfp,longer_13_jst_nfp,flesch_reading_ease_jst_nfp,flesch_kincaid_grade_level_jst_nfp,coleman_liau_index_jst_nfp,gunning_fog_index_jst_nfp,smog_index_jst_nfp,ari_index_jst_nfp,lix_index_jst_nfp,dale_chall_score_jst_nfp,prefixes_found_jst_nfp,sufixes_found_jst_nfp,acronyms_found_jst_nfp,numbers_found_jst_nfp,eng_found_jst_nfp,mesh_found_jst_nfp,stopwords_found_jst_nfp,drugbank_found_jst_nfp,icd_found_jst_nfp,chv_num_jst_nfp,chv_mean_jst_nfp,chv_sum_jst_nfp,number_chars_bs4_fp,number_words_bs4_fp,number_sentences_bs4_fp,number_syllables_bs4_fp,number_polysyllable_words_bs4_fp,difficult_words_bs4_fp,longer_4_bs4_fp,longer_6_bs4_fp,longer_10_bs4_fp,longer_13_bs4_fp,flesch_reading_ease_bs4_fp,flesch_kincaid_grade_level_bs4_fp,coleman_liau_index_bs4_fp,gunning_fog_index_bs4_fp,smog_index_bs4_fp,ari_index_bs4_fp,lix_index_bs4_fp,dale_chall_score_bs4_fp,prefixes_found_bs4_fp,sufixes_found_bs4_fp,acronyms_found_bs4_fp,numbers_found_bs4_fp,eng_found_bs4_fp,mesh_found_bs4_fp,stopwords_found_bs4_fp,drugbank_found_bs4_fp,icd_found_bs4_fp,chv_num_bs4_fp,chv_mean_bs4_fp,chv_sum_bs4_fp,number_chars_bs4_nfp,number_words_bs4_nfp,number_sentences_bs4_nfp,number_syllables_bs4_nfp,number_polysyllable_words_bs4_nfp,difficult_words_bs4_nfp,longer_4_bs4_nfp,longer_6_bs4_nfp,longer_10_bs4_nfp,longer_13_bs4_nfp,flesch_reading_ease_bs4_nfp,flesch_kincaid_grade_level_bs4_nfp,coleman_liau_index_bs4_nfp,gunning_fog_index_bs4_nfp,smog_index_bs4_nfp,ari_index_bs4_nfp,lix_index_bs4_nfp,dale_chall_score_bs4_nfp,prefixes_found_bs4_nfp,sufixes_found_bs4_nfp,acronyms_found_bs4_nfp,numbers_found_bs4_nfp,eng_found_bs4_nfp,mesh_found_bs4_nfp,stopwords_found_bs4_nfp,drugbank_found_bs4_nfp,icd_found_bs4_nfp,chv_num_bs4_nfp,chv_mean_bs4_nfp,chv_sum_bs4_nfp,number_chars_nopreprocess,number_words_nopreprocess,number_sentences_nopreprocess,number_syllables_nopreprocess,number_polysyllable_words_nopreprocess,difficult_words_nopreprocess,longer_4_nopreprocess,longer_6_nopreprocess,longer_10_nopreprocess,longer_13_nopreprocess,flesch_reading_ease_nopreprocess,flesch_kincaid_grade_level_nopreprocess,coleman_liau_index_nopreprocess,gunning_fog_index_nopreprocess,smog_index_nopreprocess,ari_index_nopreprocess,lix_index_nopreprocess,dale_chall_score_nopreprocess,prefixes_found_nopreprocess,sufixes_found_nopreprocess,acronyms_found_nopreprocess,numbers_found_nopreprocess,eng_found_nopreprocess,mesh_found_nopreprocess,stopwords_found_nopreprocess,drugbank_found_nopreprocess,icd_found_nopreprocess,chv_num_nopreprocess,chv_mean_nopreprocess,chv_sum_nopreprocess
 -------------------------------------------------------------------------------
 
-(2.e)
+(2.e) CHV features
+
+> cat clef2015_metamap_chv.txt 
+
+-------------------------------------------------------------------------------
+filename,n_chv_concepts,n_chv_dsyn_concepts,n_chv_sosy_concepts,avg_chv_value_all,avg_chv_alue_dsyn,avg_chv_value_sosy
+clueweb12-0300wb-46-20303,695,47,4,0.760,0.615,0.559
+-------------------------------------------------------------------------------
+
+(2.f) MeSH features
+
+> cat clef2015_metamap_msh.txt
+
+-------------------------------------------------------------------------------
+filename,n_chv_concepts,n_chv_dsyn_concepts,n_chv_sosy_concepts,avg_chv_value_all,avg_chv_alue_dsyn,avg_chv_value_sosy,n_msh_concepts,n_msh_dsyn_concepts,n_msh_sosy_concepts,avg_tree_length_all,avg_tree_length_dsyn,avg_tree_length_sosy
+clueweb12-0300wb-46-20303,695.0,47.0,4.0,0.76,0.615,0.559,407.0,47.0,5.0,4.902,3.298,5.8
+-------------------------------------------------------------------------------
+
+(2.g) Merge between CHV and MeSH features
+
+> cat clef2015_metamap_chv_msh.txt
+
+-------------------------------------------------------------------------------
+filename,n_chv_concepts,n_chv_dsyn_concepts,n_chv_sosy_concepts,avg_chv_value_all,avg_chv_alue_dsyn,avg_chv_value_sosy,n_msh_concepts,n_msh_dsyn_concepts,n_msh_sosy_concepts,avg_tree_length_all,avg_tree_length_dsyn,avg_tree_length_sosy
+clueweb12-0300wb-46-20303,695.0,47.0,4.0,0.76,0.615,0.559,407.0,47.0,5.0,4.902,3.298,5.8
+-------------------------------------------------------------------------------
 
 
