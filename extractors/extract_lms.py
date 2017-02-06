@@ -10,6 +10,8 @@ model0 = kenlm.LanguageModel('../data/pool_2015/read0.justext.bin')
 model1 = kenlm.LanguageModel('../data/pool_2015/read1.justext.bin')
 model2 = kenlm.LanguageModel('../data/pool_2015/read2.justext.bin')
 model3 = kenlm.LanguageModel('../data/pool_2015/read3.justext.bin')
+eos = False
+bos = False
 
 for filename in filenames:
     encoding = find_encoding(filename)
@@ -23,7 +25,7 @@ for filename in filenames:
 
     text = byeHTML(content, preprocesshtml="justext", forcePeriod=False).get_text()
 
-    print("%s,%.3f,%.3f,%.3f,%.3f" % (filename, model0.score(text), model1.score(text), model2.score(text), model3.score(text)))
+    print("%s,%.3f,%.3f,%.3f,%.3f" % (filename, model0.score(text, bos=bos, eos=eos), model1.score(text, bos=bos, eos=eos), model2.score(text, bos=bos, eos=eos), model3.score(text, bos=bos, eos=eos)))
 
 
 
