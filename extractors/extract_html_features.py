@@ -6,7 +6,7 @@ import os
 import pandas as pd
 
 def extract_html_features(filename):
-
+    print("Processing %s..." % (filename))
     html_content = get_content(filename)
 
     soup = BeautifulSoup(html_content, "html.parser")
@@ -43,5 +43,5 @@ files = glob("../data/pool_2016/*")
 features = p.map(extract_html_features, files)
 df = pd.DataFrame(features)
 
-df.to_csv("clef2015_html_features.txt")
+df.to_csv("clef2016_html_features.txt", index=False)
 
