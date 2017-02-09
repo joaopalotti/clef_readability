@@ -43,12 +43,12 @@ for metric in [ u'rel', u'trust', u'unders',
 
 """
 
-remove_keys = ['filename', u'rel', u'trust', u'unders', u'classunders']
+remove_keys = ['filename', 'rel', 'trust', 'unders', 'classunders']
 valid_features = list(set(relevant.keys()) - set(remove_keys))
 
 def find_nan(X):
     problem = []
-    for k in X.keys():
+    for k in list(X.keys()):
         if X[X[k].apply(np.isnan)].shape[0] > 0:
             problem.append(k)
     return problem
@@ -75,7 +75,7 @@ def goodman_kruskal_gamma(m, n):
     """
     num = 0
     den = 0
-    for (i, j) in permutations(xrange(len(m)), 2):
+    for (i, j) in permutations(list(range(len(m))), 2):
         m_dir = m[i] - m[j]
         n_dir = n[i] - n[j]
         sign = m_dir * n_dir
@@ -86,30 +86,30 @@ def goodman_kruskal_gamma(m, n):
             num -= 1
             den += 1
     return num / float(den)
-"""
+
 gkg = {}
 for k in set(relevant.keys()) - set(['filename', u'rel', u'trust', u'unders']):
     score = goodman_kruskal_gamma(relevant["classunders"].values, relevant[k].values)
-    print "%s: %.4f" % (k,score)
+    print("%s: %.4f" % (k,score))
     gkg[k] = score
-"""
 
 acc = metrics.make_scorer(metrics.accuracy_score)
 
 
 
 #model = linear_model.LinearRegression()
-#model = linear_model.LogisticRegression() # ~0.53
+model = linear_model.LogisticRegression() # ~0.53
 #model = linear_model.LogisticRegression(n_jobs=1, solver="liblinear", max_iter=1000, class_weight="balanced", C=1.0) # 0.53
 #model = tree.ExtraTreeClassifier(min_samples_split=2, criterion="gini", class_weight="balanced", random_state=29) # 0.48
 #model = tree.ExtraTreeClassifier(random_state=29)
-model = ensemble.RandomForestClassifier(random_state=29)
+#model = ensemble.RandomForestClassifier(random_state=29)
 #model = svm.LinearSVC()
 #model = dummy.DummyClassifier(strategy="most_frequent")
 #model = dummy.DummyClassifier(strategy="stratified")
 #print model
-print "Mean Accuracy score: %.4f " % \
+print(( "Mean Accuracy score: %.4f " % \
         (np.mean(model_selection.cross_val_score(model, Xnona, relevant["classunders"], cv=10, scoring=acc)))
+     ))
 
 
 def feature_importance(forest, names):
@@ -121,15 +121,17 @@ def feature_importance(forest, names):
     print("Feature ranking:")
 
     for f in range(X.shape[1]):
-	print("%d. feature %s (%f)" % (f + 1, names[indices[f]], importances[indices[f]]))
+        print("%d. feature %s (%f)" % (f + 1, names[indices[f]], importances[indices[f]]))
+
+
 
     import matplotlib.pyplot as plt
     # Plot the feature importances of the forest
     plt.figure()
     plt.title("Feature importances")
-    plt.bar(range(X.shape[1]), importances[indices],
+    plt.bar(list(range(X.shape[1])), importances[indices],
 	   color="r", yerr=std[indices], align="center")
-    plt.xticks(range(X.shape[1]), indices)
+    plt.xticks(list(range(X.shape[1])), indices)
     plt.xlim([-1, X.shape[1]])
     plt.show()
 
@@ -138,6 +140,6 @@ def feature_importance(forest, names):
 
 def show_most_informative_features(names, clf, n=20):
     coefs_with_fns = sorted(zip(clf.coef_[0], names))
-    top = zip(coefs_with_fns[:n], coefs_with_fns[:-(n + 1):-1])
+    top = list(zip(coefs_with_fns[:n], coefs_with_fns[:-(n + 1):-1]))
     for (coef_1, fn_1), (coef_2, fn_2) in top:
-        print "\t%.4f\t%-15s\t\t%.4f\t%-15s" % (coef_1, fn_1, coef_2, fn_2)
+        print(("\t%.4f\t%-15s\t\t%.4f\t%-15s" % (coef_1, fn_1, coef_2, fn_2)))
