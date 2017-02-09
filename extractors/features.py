@@ -38,6 +38,18 @@ def calc_chv(words, chv_map):
         return 0,0.0,0.0
     return len(chvs), np.mean(chvs), np.sum(chvs)
 
+def get_content(filename):
+    encoding = find_encoding(filename)
+
+    if filename.endswith(".gz"):
+        with gzip.open(filename, mode="rt", encoding=encoding, errors="surrogateescape") as f:
+            content = str(f.read()) # Explicitly convert from bytes to str
+    else:
+        with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
+            content = f.read()
+    return content
+
+
 def find_encoding(doc_full_path):
     # http://chardet.readthedocs.io/en/latest/usage.html
     # This method uses the traditional chardet to find out the encoding used in a file
@@ -122,7 +134,7 @@ def process(filename):
     readability_row.extend( [prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, med_found, \
             eng_med_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum] )
 
-    # Header: filename, number_chars, number_words, number_sentences, number_syllables, number_polysyllable_words, difficult_words, longer_4, longer_6, longer_10, longer_13, flesch_reading_ease, flesch_kincaid_grade_level, coleman_liau_index, gunning_fog_index, smog_index, ari_index, lix_index, dale_chall_score, prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, med_found, eng_med_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum
+    # Header: filename, number_chars, number_words, number_types, number_sentences, number_syllables, number_polysyllable_words, difficult_words, longer_4, longer_6, longer_10, longer_13, flesch_reading_ease, flesch_kincaid_grade_level, coleman_liau_index, gunning_fog_index, smog_index, ari_index, lix_index, dale_chall_score, prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, med_found, eng_med_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum
 
     csv_writer.writerow(readability_row)
     csv_file.flush()
