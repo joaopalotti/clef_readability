@@ -32,16 +32,18 @@ def clip_readability(df):
 
 
 def mapunders(understandability):
+    """
     if understandability <= 70:
         return 0
     else:
         return 1
     """
-    elif understandability <= 80:
+    if understandability < 33:
+        return 0
+    elif understandability <= 66:
         return 1
     else:
         return 2
-    """
 def applyUnderstandabilityMap(qrels):
     qrels["classunders"] = qrels["unders"].apply(mapunders)
 
@@ -49,22 +51,25 @@ def normalizeFeatures(doc_features):
 
     keys = doc_features.keys()
 
-    fields = ['prefixes_found', 'sufixes_found', 'acronyms_found', 'numbers_found', 'eng_found',
+    fields = ['acronyms_found', 'prefixes_found', 'sufixes_found', 'numbers_found', 'eng_found',
                 'mesh_found', 'stopwords_found', 'drugbank_found', 'icd_found',
                 'longer_4', 'longer_6', 'longer_10', 'longer_13',
                 'chv_num', 'chv_sum',
-                'difficult_words',
+                'number_words', 'number_of_chars', 'difficult_words', 'number_polysyllable_words',
+                'number_syllables'
                 ]
 
     for k in keys:
         for f in fields:
             if f in k:
-                #print("Found %s in %s" % (f, k))
+                print("Found %s in %s" % (f, k))
                 suffix = k.rsplit(f,1)[1]
-                #print("Suffix: %s" % (suffix))
-                #
-                #doc_features[k + "_normalized"] = doc_features[k] / doc_features["number_words" + suffix]
-                doc_features[k] = doc_features[k] / doc_features["number_words" + suffix]
+                prefix = f
+                print("Prefix: %s Suffix: %s" % (prefix, suffix))
+                doc_features[prefix + "_per_word" + suffix] = doc_features[k] / doc_features["number_words" + suffix]
+                doc_features[prefix + "_per_sentence" + suffix] = doc_features[k] / doc_features["number_sentences" + suffix]
+
+
     return doc_features
 
 def removeEmpties(doc_features):
