@@ -51,12 +51,17 @@ def normalizeFeatures(doc_features):
 
     keys = doc_features.keys()
 
-    fields = ['acronyms_found', 'prefixes_found', 'sufixes_found', 'numbers_found', 'eng_found',
-                'mesh_found', 'stopwords_found', 'drugbank_found', 'icd_found',
+    fields = [  # General metrics:
+                'acronyms_found', 'prefixes_found', 'sufixes_found', 'numbers_found',
+                'stopwords_found', 'eng_found', 'number_words', 'number_of_chars',
+                'difficult_words', 'number_polysyllable_words', 'number_syllables',
                 'longer_4', 'longer_6', 'longer_10', 'longer_13',
-                'chv_num', 'chv_sum',
-                'number_words', 'number_of_chars', 'difficult_words', 'number_polysyllable_words',
-                'number_syllables'
+                # Medical Vocabularies:
+                'drugbank_found', 'icd_found', 'mesh_found',
+                'chv_num', 'chv_sum', 'chv_mean'
+                # html metrics:
+                'n_abbrs','n_as','n_blockquotes','n_bolds','n_cites','n_divs','n_dls','n_forms','n_h1s','n_h2s','n_h3s',
+                'n_h4s','n_h5s','n_h6s','n_hs','n_imgs','n_lists','n_ols','n_ps','n_qs','n_spans','n_table','n_uls',
                 ]
 
     for k in keys:
@@ -66,6 +71,12 @@ def normalizeFeatures(doc_features):
                 suffix = k.rsplit(f,1)[1]
                 prefix = f
                 print("Prefix: %s Suffix: %s" % (prefix, suffix))
+
+                # this is the case for the html metrics, as I did not use bs4 nor justext to preprocess the text
+                if len(suffix) == 0:
+                    # I am arbitrarily chosen the number of sentences and words from bs4, not force period
+                    suffix = "_bs4_nfp"
+
                 doc_features[prefix + "_per_word" + suffix] = doc_features[k] / doc_features["number_words" + suffix]
                 doc_features[prefix + "_per_sentence" + suffix] = doc_features[k] / doc_features["number_sentences" + suffix]
 

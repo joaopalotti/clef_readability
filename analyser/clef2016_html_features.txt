@@ -1,4 +1,4 @@
-filename,n_abbrs,n_as,n_blockquotes,n_bs,n_cites,n_divs,n_dls,n_forms,n_h1s,n_h2s,n_h3s,n_h4s,n_h5s,n_h6s,n_hs,n_imgs,n_lists,n_ols,n_ps,n_qs,n_spans,n_table,n_uls
+filename,n_abbrs,n_as,n_blockquotes,n_bolds,n_cites,n_divs,n_dls,n_forms,n_h1s,n_h2s,n_h3s,n_h4s,n_h5s,n_h6s,n_hs,n_imgs,n_lists,n_ols,n_ps,n_qs,n_spans,n_table,n_uls
 clueweb12-1612wb-88-07230,2,75,0,0,0,38,0,0,1,16,0,0,0,0,17,0,8,0,42,0,11,0,8
 clueweb12-1910wb-52-03628,0,14,0,27,0,4,0,0,1,0,0,0,0,0,1,2,0,0,125,0,47,5,0
 clueweb12-0009wb-38-32244,0,705,0,0,0,54,0,1,1,3,10,0,0,0,14,0,3,0,78,0,0,0,3

@@ -5,7 +5,6 @@ from auxiliar import applyUnderstandabilityMap, normalizeFeatures, removeEmpties
 from itertools import permutations
 from multiprocessing import Pool
 
-
 features_file = sys.argv[1]
 
 qrels = pd.read_csv("../qrels/clef16/doc_all.mean")
@@ -43,6 +42,14 @@ def goodman_kruskal_gamma(m, n):
     0.9166666666666666
     from https://github.com/shilad/context-sensitive-sr/blob/master/SRSurvey/src/python/correlation.py
     """
+    if len(m)==0  or len(n) == 0:
+        print("ERROR!!")
+        return 0.0
+
+    if min(n) == max(n) or min(m) == max(m):
+        print("No variance!!! ERROR!!")
+        return 0.0
+
     num = 0
     den = 0
     for (i, j) in permutations(list(range(len(m))), 2):
@@ -64,17 +71,28 @@ for k in set(relevant.keys()) - set(['filename', u'rel', u'trust', u'unders']):
     metrics.append(k)
 
 def parallel_gkg(x):
-    return goodman_kruskal_gamma(x[0], x[1])
+    #print("Running: %s, %s" % (x[0],x[1]))
+    ans = goodman_kruskal_gamma(x[0], x[1])
+    return ans
+
 p = Pool()
 scores = p.map(parallel_gkg, parameters[:])
 results = dict(zip(metrics,scores))
 
 """
+# Debug:
+for i, p in enumerate(parameters):
+    print("Metric: %s" % (metrics[i]))
+    parallel_gkg(p)
+"""
+
 def printTable(metrics):
     for (metric, score) in metrics.iteritems():
         if "bs4" in metric:
             print("Textual\tBS4\t%.3f" % (score))
+        elif "jst" in metric:
+            print("Textual\tJST\t%.3f" % (score))
 
 
 printTable(results)
-"""
+
