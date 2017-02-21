@@ -62,6 +62,9 @@ def normalizeFeatures(doc_features):
                 # html metrics:
                 'n_abbrs','n_as','n_blockquotes','n_bolds','n_cites','n_divs','n_dls','n_forms','n_h1s','n_h2s','n_h3s',
                 'n_h4s','n_h5s','n_h6s','n_hs','n_imgs','n_lists','n_ols','n_ps','n_qs','n_spans','n_table','n_uls',
+                # MeSH and CHV counts:
+                'n_msh_concepts', 'n_msh_dysn_concepts', 'n_sosy_concepts',
+                'n_chv_concepts', 'n_chv_dsyn_concepts', 'n_sosy_chv_concepts'
                 ]
 
     for k in keys:
