@@ -5,6 +5,8 @@ from glob import glob
 import os
 import pandas as pd
 
+# Runs with Python 3.5, 2.7
+
 def extract_html_features(filename):
     print("Processing %s..." % (filename))
     html_content = get_content(filename)
@@ -35,6 +37,9 @@ def extract_html_features(filename):
     features["n_divs"] = len(soup.find_all('div'))
     features["n_forms"] = len(soup.find_all('form'))
     features["n_spans"] = len(soup.find_all('span'))
+    features["n_scripts"] = len(soup.find_all('script'))
+    features["n_inputs"] = len(soup.find_all('input'))
+    features["n_links"] = len(soup.find_all('link'))
     return features
 
 
