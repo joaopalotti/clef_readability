@@ -20,7 +20,7 @@ def extract_html_features(filename):
     features["n_blockquotes"] = len(soup.find_all('blockquote'))
     features["n_abbrs"] = len(soup.find_all('abbr'))
     features["n_cites"] = len(soup.find_all('cite'))
-    features["n_bs"] = len(soup.find_all('b'))
+    features["n_bolds"] = len(soup.find_all('b'))
     features["n_ols"] = len(soup.find_all('ol'))
     features["n_uls"] = len(soup.find_all('ul'))
     features["n_dls"] = len(soup.find_all('dl'))

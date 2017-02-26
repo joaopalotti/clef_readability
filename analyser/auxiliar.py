@@ -61,10 +61,13 @@ def normalizeFeatures(doc_features):
                 'chv_num', 'chv_sum', 'chv_mean'
                 # html metrics:
                 'n_abbrs','n_as','n_blockquotes','n_bolds','n_cites','n_divs','n_dls','n_forms','n_h1s','n_h2s','n_h3s',
-                'n_h4s','n_h5s','n_h6s','n_hs','n_imgs','n_lists','n_ols','n_ps','n_qs','n_spans','n_table','n_uls',
+                'n_h4s','n_h5s','n_h6s','n_hs','n_imgs', 'n_inputs', 'n_links', 'n_lists','n_ols','n_ps','n_qs', 'n_scripts',
+                'n_spans','n_table','n_uls',
                 # MeSH and CHV counts:
                 'n_msh_concepts', 'n_msh_dysn_concepts', 'n_sosy_concepts',
-                'n_chv_concepts', 'n_chv_dsyn_concepts', 'n_sosy_chv_concepts'
+                'n_chv_concepts', 'n_chv_dsyn_concepts', 'n_sosy_chv_concepts',
+                'avg_tree_length_all', 'avg_tree_length_dysn', 'avg_tree_length_sosy',
+                'avg_chv_value_all', 'avg_chv_value_dysn', 'avg_chv_value_sosy',
                 ]
 
     for k in keys:
