@@ -86,13 +86,6 @@ for i, p in enumerate(parameters):
     parallel_gkg(p)
 """
 
-def printTable(metrics):
-    for (metric, score) in metrics.iteritems():
-        if "bs4" in metric:
-            print("Textual\tBS4\t%.3f" % (score))
-        elif "jst" in metric:
-            print("Textual\tJST\t%.3f" % (score))
-
-
-printTable(results)
+pd.Series(results,name="metric").to_csv("calculated_gkg.csv")
+print "Done!"
 
