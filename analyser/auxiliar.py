@@ -106,7 +106,7 @@ def removeDuplicates(df):
             'sufixes_found', 'acronyms_found', 'numbers_found', 'eng_found', 'mesh_found',
             'stopwords_found', 'drugbank_found', 'icd_found', 'chv_num', 'chv_mean', 'chv_sum']
 
-    endings = {"_jsp": ["_jst_fp", "_jst_nfp"], "_bs4": ["_bs4_fp","_bs4_nfp"]}
+    endings = {"_jst": ["_jst_fp", "_jst_nfp"], "_bs4": ["_bs4_fp","_bs4_nfp"]}
 
     for field in duplicates:
         for ending in endings.keys():
