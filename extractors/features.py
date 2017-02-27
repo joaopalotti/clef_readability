@@ -150,7 +150,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) <= 1:
         script_name = os.path.basename(__file__)
-        print(("USAGE: python %s [-f] <PATH_TO_DATA> <OUT_DIR>" % (script_name)))
+        print(("USAGE: python %s <PATH_TO_DATA> <OUT_DIR>" % (script_name)))
         sys.exit(0)
 
     forcePeriod=True            # Options: True, False
@@ -180,7 +180,7 @@ if __name__ == "__main__":
     acronyms = set([f.strip() for f in open(acronyms_file, "r", encoding="utf8").readlines()])
 
     eng_dict = set([f.strip().lower() for f in open(general_english_dict_file, "r", encoding="utf8").readlines()])
-    med_dict = set([f.strip().lower() for f in open(openmedical_english_dict_file, "r", encoding="utf8").readlines()])
+    med_dict = set([f.strip().lower() for f in open(openmedical_english_dict_file, "r", encoding="ISO-8859-2").readlines()])
     eng_med_dict = eng_dict.union(med_dict)
     mesh_dict = set([f.strip().lower() for f in open(mesh_dict_file, "r", encoding="utf8").readlines()])
     stopwords_dict = set([f.strip().lower() for f in open(stopwords_english_dict_file, "r", encoding="utf8").readlines()])
