@@ -1,7 +1,10 @@
+import re
+import pandas as pd
+from sklearn import feature_selection
 
 def clip_readability(df):
 
-    school_year_metrics = ["ari_index", "smog_index", "gunning_fog_index", "flesch_kincaid_grade_level"]
+    school_year_metrics = ["ari_index", "smog_index", "gunning_fog_index", "flesch_kincaid_grade_level", "coleman_liau_index"]
 
     # Max ARI Index is 15:
     for k in df.keys():
@@ -73,10 +76,10 @@ def normalizeFeatures(doc_features):
     for k in keys:
         for f in fields:
             if f in k:
-                print("Found %s in %s" % (f, k))
+                #print("Found %s in %s" % (f, k))
                 suffix = k.rsplit(f,1)[1]
                 prefix = f
-                print("Prefix: %s Suffix: %s" % (prefix, suffix))
+                #print("Prefix: %s Suffix: %s" % (prefix, suffix))
 
                 # this is the case for the html metrics, as I did not use bs4 nor justext to preprocess the text
                 if len(suffix) == 0:
@@ -119,7 +122,36 @@ def removeDuplicates(df):
                 del df[field + ending]
     return df
 
+def clean(s):
+    s = re.sub('_bs4', '', s)
+    s = re.sub('_jst', '', s)
+    s = re.sub('_nopreprocess', '', s)
+    s = re.sub('_fp', '', s)
+    s = re.sub('_nfp', '', s)
+    s = re.sub('_per_word', '', s)
+    s = re.sub('_per_sentence', '', s)
+    return s
 
+def clean_preprocess(s):
+    s = re.sub('_bs4', '', s)
+    s = re.sub('_jst', '', s)
+    return s
 
+def create_filters(df, field):
+    df["bs4"] = df[field].apply(lambda x: "bs4" in x)
+    df["jst"] = df[field].apply(lambda x: "jst" in x)
+    df["npro"] = df[field].apply(lambda x: "nopreprocess" in x)
+    df["fp"] = df[field].apply(lambda x: "fp" in x)
+    df["nfp"] = df[field].apply(lambda x: "nfp" in x)
+    df["pw"] = df[field].apply(lambda x: "per_word" in x)
+    df["ps"] = df[field].apply(lambda x: "per_sentence" in x)
+    df["html"] = df[field].apply(lambda x: x.startswith("n_"))
 
+    df["root"] = df[field].apply(lambda x: clean(x))
+    df["root_no_preprocess"] = df[field].apply(lambda x: clean_preprocess(x))
+
+def topFeatures(X, y, K, feature_names, score_func=feature_selection.chi2):
+    fs = feature_selection.SelectKBest(score_func=score_func).fit(X,y)
+    features = pd.DataFrame(zip(feature_names, fs.scores_), columns=["feature", "value"])
+    return features[["feature","value"]].sort_values(by="value", ascending=False).head(K)
 
