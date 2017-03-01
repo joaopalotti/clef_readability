@@ -24,9 +24,8 @@ relevant = removeEmpties(relevant)
 # Remove duplicated cols
 relevant = removeDuplicates(relevant)
 
-labels = relevant["classunders"].sort_values()
-
 """
+labels = relevant["classunders"].sort_values()
 for metric in [ u'rel', u'trust', u'unders',
        u'number_chars', u'number_words', u'number_sentences',
        u'number_syllables', u'number_polysyllable_words', u'difficult_words',
