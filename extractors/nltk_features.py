@@ -1,3 +1,4 @@
+# USE PYTHON 3
 import sys, os
 from glob import glob
 from nltk import tokenize
@@ -17,8 +18,8 @@ possible_tags = ['VERB','NOUN','PRON','ADJ','ADV','ADP','CONJ','DET','NUM','PRT'
 
 printheader = ["filename"] +\
                     [ s for s in possible_sentiment ] +\
-                    [ s for s in possible_tags ] +\
-                    ["perc_not_in_aspell","avg_suggestion_length"] +\
+                    [ s if s != '.' else 'PUNCT' for s in possible_tags ] +\
+                    ["perc_not_aspell","avg_suggestion_length"] +\
                     ["entities_per_sentence","entities_per_word"] +\
                     ["avg_tree_height"]
 
@@ -90,7 +91,6 @@ for f in files:
 
     for pos in possible_tags:
         known_pos[pos] = known_pos[pos] / ntokens if ntokens > 0 else 0.0
-
 
     printvector = [os.path.basename(f)] +\
                         [ ("%.2f" % (ss_sum[s])) for s in possible_sentiment ] +\
