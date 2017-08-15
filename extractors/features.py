@@ -113,7 +113,13 @@ def process(filename):
             content = f.read()
 
     calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing, forcePeriod=forcePeriod)
-    # print("#Words after preprocessing: %d" % (len(calc.get_words())))
+
+    #calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing, forcePeriod=True)
+    #print("#Words after preprocessing (TRUE): %d" % (len(calc.get_words())))
+    #print("#Sente after preprocessing (TRUE): %d" % (len(calc.get_sentences())))
+    #calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing, forcePeriod=False)
+    #print("#Words after preprocessing (FALSE): %d" % (len(calc.get_words())))
+    #print("#Sente after preprocessing (FALSE): %d" % (len(calc.get_sentences())))
 
     prefixes_found = count_prefixes(calc.get_words(), prefixes)
     sufixes_found = count_sufixes(calc.get_words(), sufixes)
@@ -130,6 +136,9 @@ def process(filename):
 
     filename = os.path.basename(filename)
 
+
+    print("Found %d words." % len(calc.get_words()))
+    print("Found %d sentences." % len(calc.get_sentences()))
     readability_row = [filename] + list(calc.get_all_metrics())
     readability_row.extend( [prefixes_found, sufixes_found, acronyms_found, numbers_found, eng_found, med_found, \
             eng_med_found, mesh_found, stopwords_found, drugbank_found, icd_found, chv_num, chv_mean, chv_sum] )
@@ -148,13 +157,13 @@ def process(filename):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) <= 1:
+    if len(sys.argv) <= 2:
         script_name = os.path.basename(__file__)
         print(("USAGE: python %s <PATH_TO_DATA> <OUT_DIR>" % (script_name)))
         sys.exit(0)
 
-    forcePeriod=True            # Options: True, False
-    preprocessing = "justext" # Options: justext, bs4, None
+    forcePeriod=False            # Options: True, False
+    preprocessing = "boi"   # Options: justext, bs4, boi, None
 
     print(("PARAMETERS: ", sys.argv))
     path_to_data = sys.argv[1]
@@ -190,8 +199,9 @@ if __name__ == "__main__":
     chv_map = [f.strip().split(",") for f in open(chv_dict_file, "r", encoding="utf8").readlines()]
     chv_map = [(a, float(b)) for a,b in chv_map]
 
-    files = glob.iglob(path_to_data + "/*")
-    #print("Processing %d files..." % (len(files)))
+    files = glob.glob(path_to_data + "/*")
+    # Debug only:
+    # print("Processing %d files..." % (len(list(files))))
 
     shared.setConst(prefixes=prefixes)
     shared.setConst(sufixes=sufixes)
