@@ -3,10 +3,15 @@ from pymetamap import MetaMap
 from byeHTML import byeHTML
 import glob
 import gzip
+import sys, os
 from features import find_encoding
 from scoop import futures
 
-mm = MetaMap.get_instance('/bigdata/palotti/public_mm2016/bin/metamap16')
+
+#metamap_dir="/bigdata/palotti/public_mm2016/bin/metamap16"
+metamap_dir="/home/palotti/public_mm/bin/metamap16"
+
+mm = MetaMap.get_instance(metamap_dir)
 
 def process(filename):
     encoding = find_encoding(filename)
@@ -53,7 +58,7 @@ def process(filename):
     return 1
 
 if __name__ == "__main__":
-
-    filenames = glob.glob("../data/clef16docs/*")
+    indir = sys.argv[1]
+    filenames = glob.glob(os.path.join(indir, "*"))
     print("Result: %d" % sum(list(futures.map(process, filenames[:]))))
 

@@ -4,9 +4,14 @@ from byeHTML import byeHTML
 import glob
 import gzip
 from features import find_encoding
+import sys, os
 
-filenames = glob.glob("../data/pool_2016/*")
-mm = MetaMap.get_instance('/home/palotti/public_mm/bin/metamap16')
+indir = sys.argv[1]
+#metamap_dir="/bigdata/palotti/public_mm2016/bin/metamap16"
+metamap_dir="/home/palotti/public_mm/bin/metamap16"
+
+filenames = glob.glob(os.path.join(indir, "*"))
+mm = MetaMap.get_instance(metamap_dir)
 
 for filename in filenames[:]:
     encoding = find_encoding(filename)
