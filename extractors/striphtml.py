@@ -15,7 +15,7 @@ for filename in glob.glob(os.path.join(path_to_documents, "*")):
     outpath = os.path.join(out_path, os.path.basename(filename))
 
     print(filename)
-    with open(outpath, "w") as fout:
+    with open(outpath, "w", errors="surrogateescape") as fout:
         fout.write(content)
 
 
