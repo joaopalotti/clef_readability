@@ -1,6 +1,7 @@
 from nltk import tokenize
 import gzip
 import chardet
+from byeHTML import byeHTML
 
 def get_words(text):
     word_tokenizer = tokenize.TreebankWordTokenizer()
@@ -20,7 +21,7 @@ def find_encoding(doc_full_path):
     return chardet.detect(rawdata)["encoding"]
 
 
-def get_content(filename):
+def get_content(filename, htmlremover="justext", forcePeriod=False):
     encoding = find_encoding(filename)
 
     if filename.endswith(".gz"):
@@ -29,6 +30,7 @@ def get_content(filename):
     else:
         with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
             content = f.read()
-    return content
 
+    content = byeHTML(content, preprocesshtml=htmlremover, forcePeriod=forcePeriod).get_text()
+    return content
 
