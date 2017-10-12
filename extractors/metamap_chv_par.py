@@ -1,11 +1,12 @@
 from pymetamap import MetaMap
 
-from byeHTML import byeHTML
 import glob
-import gzip
-from features import find_encoding
 import pandas as pd
 from scoop import futures
+import sys, os
+from auxiliar import get_content
+
+path_to_files = sys.argv[1]
 
 mm = MetaMap.get_instance('/bigdata/palotti/public_mm2016/bin/metamap16')
 
@@ -18,18 +19,11 @@ chv = dict(chv.values)
 
 def process(filename):
 
-    encoding = find_encoding(filename)
-
-    if filename.endswith(".gz"):
-        with gzip.open(filename, mode="rt", encoding=encoding, errors="surrogateescape") as f:
-            content = str(f.read()) # Explicitly convert from bytes to str
-    else:
-        with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
-            content = f.read()
-
-    text = byeHTML(content, preprocesshtml="justext", forcePeriod=True).get_text()
-    #print("TEXT: %s" % len(text.splitlines()))
-    concepts, error = mm.extract_concepts(text.splitlines(), prefer_multiple_concepts=True, restrict_to_data_sources=["CHV"])
+    try:
+        content = get_content(filename, htmlremover=None)
+        concepts, error = mm.extract_concepts(content.splitlines(), prefer_multiple_concepts=True, restrict_to_data_sources=["CHV"])
+    except:
+        return 0
 
     n_all_concepts = 0
     n_dsyn_concepts = 0
@@ -63,6 +57,6 @@ def process(filename):
 
 if __name__ == "__main__":
 
-    filenames = glob.glob("../data/clef16docs/*")
+    filenames = glob.glob(os.path.join(path_to_files, "*"))
     print("Result: %d" % sum(list(futures.map(process, filenames[:]))))
 
