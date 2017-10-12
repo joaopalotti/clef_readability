@@ -1,15 +1,18 @@
 from bs4 import BeautifulSoup
-from features import get_content
+from auxiliar import get_content
 from multiprocessing import Pool
 from glob import glob
 import os
+import sys
 import pandas as pd
+
+path_to_files = sys.argv[1]
 
 # Runs with Python 3.5, 2.7
 
 def extract_html_features(filename):
     print("Processing %s..." % (filename))
-    html_content = get_content(filename)
+    html_content = get_content(filename, htmlremover=None)
 
     soup = BeautifulSoup(html_content, "html.parser")
     features = {}
@@ -44,9 +47,9 @@ def extract_html_features(filename):
 
 
 p = Pool()
-files = glob("../data/pool_2016/*")
+files = glob(os.path.join(path_to_files,"*"))
 features = p.map(extract_html_features, files)
 df = pd.DataFrame(features)
 
-df.to_csv("clef2016_html_features.txt", index=False)
+df.to_csv(sys.stdout, index=False)
 
