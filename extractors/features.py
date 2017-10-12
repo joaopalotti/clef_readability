@@ -4,6 +4,7 @@ import re
 import os
 import glob
 import csv
+from auxiliar import get_content
 from readcalc import readcalc
 from scoop import futures, shared
 import numpy as np
@@ -38,46 +39,6 @@ def calc_chv(words, chv_map):
         return 0,0.0,0.0
     return len(chvs), np.mean(chvs), np.sum(chvs)
 
-def get_content(filename):
-    encoding = find_encoding(filename)
-
-    if filename.endswith(".gz"):
-        with gzip.open(filename, mode="rt", encoding=encoding, errors="surrogateescape") as f:
-            content = str(f.read()) # Explicitly convert from bytes to str
-    else:
-        with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
-            content = f.read()
-    return content
-
-
-def find_encoding(doc_full_path):
-    # http://chardet.readthedocs.io/en/latest/usage.html
-    # This method uses the traditional chardet to find out the encoding used in a file
-    if doc_full_path.endswith(".gz"):
-        f = gzip.open(doc_full_path, mode="rb")
-    else:
-        f = open(doc_full_path, mode="rb")
-
-    rawdata = f.read()
-    return chardet.detect(rawdata)["encoding"]
-
-def find_encoding_html(doc_full_path):
-    # This method tries to find the string "charset=XXX" set in most of the html files
-
-    encoding = "windows-1252"
-
-    if doc_full_path.endswith(".gz"):
-        f = gzip.open(doc_full_path)
-    else:
-        f = open(doc_full_path)
-
-    content = f.read()[0:5000]
-    regexp = re.search('charset=(?P<enc>[\s"\']*([^\s"\'/>]*))', str(content))
-    if regexp is not None:
-        encoding = regexp.group("enc")
-    f.close()
-    return encoding.strip("\"\'")
-
 def process(filename):
 
     forcePeriod = shared.getConst('forcePeriod')
@@ -102,17 +63,10 @@ def process(filename):
     csv_file = open(outfilename, 'w')
     csv_writer = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 
-    encoding = find_encoding(filename)
-    print(("Processing: %s. Encoding: %s" % (filename, encoding)))
+    content = get_content(filename, htmlremover=preprocessing, forcePeriod=forcePeriod)
 
-    if filename.endswith(".gz"):
-        with gzip.open(filename, mode="rt", encoding=encoding, errors="surrogateescape") as f:
-            content = str(f.read()) # Explicitly convert from bytes to str
-    else:
-        with open(filename, encoding=encoding, errors="surrogateescape", mode="r") as f:
-            content = f.read()
-
-    calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing, forcePeriod=forcePeriod)
+    # I am using byeHtml from auxiliar instead of readcalc
+    calc = readcalc.ReadCalc(content, preprocesshtml=None)
 
     #calc = readcalc.ReadCalc(content, preprocesshtml=preprocessing, forcePeriod=True)
     #print("#Words after preprocessing (TRUE): %d" % (len(calc.get_words())))
@@ -163,7 +117,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     forcePeriod=False            # Options: True, False
-    preprocessing = "boi"   # Options: justext, bs4, boi, None
+    preprocessing = None         # Options: justext, bs4, boi, None
 
     print(("PARAMETERS: ", sys.argv))
     path_to_data = sys.argv[1]
