@@ -19,6 +19,7 @@ def normalize_vocabulary(dfi, filtered):
         dfi = dfi.ix[filtered].dropna()
 
     dfi.dropna(inplace=True)
+    dfi = dfi[dfi["freq"] > 5].copy()
     dfi.sort_values(by="freq", inplace=True)
     dfi = dfi.reset_index().reset_index().rename(columns={"index":"rank"})
     dfi["rank"] = dfi["rank"] + 1
@@ -29,6 +30,6 @@ def normalize_vocabulary(dfi, filtered):
     return dfi
 
 df = normalize_vocabulary(df, filtervoc)
-df[["word","rank"]].to_csv("normalized.vocabulary")
+df[["word","rank"]].to_csv(sys.stdout, index=False)
 
 
