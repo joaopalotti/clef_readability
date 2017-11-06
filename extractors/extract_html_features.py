@@ -11,10 +11,13 @@ path_to_files = sys.argv[1]
 # Runs with Python 3.5, 2.7
 
 def extract_html_features(filename):
-    print("Processing %s..." % (filename))
-    html_content = get_content(filename, htmlremover=None)
+    #print("Processing %s..." % (filename))
+    try:
+        html_content = get_content(filename, htmlremover=None)
+        soup = BeautifulSoup(html_content, "html.parser")
+    except:
+        return {"filename": os.path.basename(filename)}
 
-    soup = BeautifulSoup(html_content, "html.parser")
     features = {}
     features["filename"] = os.path.basename(filename)
     features["n_as"] = len(soup.find_all('a'))
