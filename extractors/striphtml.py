@@ -9,13 +9,17 @@ out_path = sys.argv[2]
 htmlremover = sys.argv[3]
 forceperiod = str2bool(sys.argv[4])
 
+print("Preprocessing: %s and ForcePeriod: %r" % (htmlremover,forceperiod))
 for filename in glob.glob(os.path.join(path_to_documents, "*")):
     content = get_content(filename, htmlremover, forceperiod)
 
     outpath = os.path.join(out_path, os.path.basename(filename))
 
-    print(filename)
-    with open(outpath, "w", errors="surrogateescape") as fout:
-        fout.write(content)
+    print(filename, len(content))
+    try:
+        with open(outpath, "w", errors="surrogateescape") as fout:
+            fout.write(content)
+    except:
+        continue
 
 
