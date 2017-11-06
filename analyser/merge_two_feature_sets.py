@@ -1,7 +1,6 @@
 import sys
 import pandas as pd
 import numpy as np
-from auxiliar import normalizeFeatures
 
 features_file1 = sys.argv[1]
 features_file2 = sys.argv[2]
@@ -13,7 +12,4 @@ features1 = pd.read_csv(features_file1)
 features2 = pd.read_csv(features_file2)
 
 pd.merge(features1, features2, on="filename", suffixes=(suffix1, suffix2)).to_csv(output, index=False)
-
-
-
 
