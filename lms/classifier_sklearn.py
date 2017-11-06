@@ -4,6 +4,7 @@ import sys
 import glob
 import os
 from auxiliar import get_content
+from xgboost import XGBRegressor, XGBClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import naive_bayes
 from sklearn import decomposition
@@ -12,9 +13,9 @@ from sklearn import neural_network
 from sklearn import linear_model
 from sklearn import svm
 
-reddit_in = sys.argv[1]
-pubmed_in = sys.argv[2]
-enwikipedia_in = sys.argv[3]
+reddit_in = sys.argv[1]       # reddit/reddit.csv
+pubmed_in = sys.argv[2]       # treccds/treccds_abstracts.csv
+enwikipedia_in = sys.argv[3]  # wiki/engwikipedia.csv
 path_to_files = sys.argv[4]
 model = sys.argv[5]
 outname = sys.argv[6]
@@ -31,14 +32,14 @@ enwiki = pd.read_csv(enwikipedia_in)
 
 # goodbye empties...
 reddit = reddit[~reddit["text"].isnull()]
-enwiki = enwiki[~enwiki["content"].isnull()]
-pubmed = pubmed[~pubmed["abstract"].isnull()]
+enwiki = enwiki[~enwiki["text"].isnull()]
+pubmed = pubmed[~pubmed["text"].isnull()]
 
 # decrease size of pubmed data
 pubmed = pubmed.sample(40000)
 
 y = np.concatenate((np.ones(reddit.shape[0]), np.ones(enwiki.shape[0]) + 1, np.ones(pubmed.shape[0]) + 2))
-X = pd.concat((reddit["text"], enwiki["content"], pubmed["abstract"]))
+X = pd.concat((reddit["text"], enwiki["text"], pubmed["text"]))
 
 #count_vect = CountVectorizer()
 #X_counts = count_vect.fit_transform(X)
@@ -54,18 +55,20 @@ X_lsa = LSA.fit_transform(X_tfidf, y)
 
 #clf = MultinomialNB().fit(Xlsa, y)
 if model == "rf":
-    clf = ensemble.RandomForestRegressor(random_state=42).fit(X_lsa, y) if task == "reg" else ensemble.RandomForestClassifier(random_state=42).fit(X_lsa, y)
+    clf = ensemble.RandomForestRegressor(random_state=42, n_jobs=-1).fit(X_lsa, y) if task == "reg" else ensemble.RandomForestClassifier(random_state=42, n_jobs=-1).fit(X_lsa, y)
 elif model == "nn":
     clf = neural_network.MLPRegressor(random_state=42).fit(X_lsa, y) if task == "reg" else neural_network.MLPClassifier(random_state=42).fit(X_lsa, y)
 elif model == "gbr":
     clf = ensemble.GradientBoostingRegressor(random_state=42).fit(X_lsa, y) if task == "reg" else ensemble.GradientBoostingClassifier(random_state=42).fit(X_lsa, y)
 elif model == "lr":
-    clf = linear_model.LinearRegression(n_jobs=-1).fit(X_lsa, y) if task == "reg" else linear_model.LogisticRegression().fit(X_lsa, y)
+    clf = linear_model.LinearRegression(n_jobs=-1).fit(X_lsa, y) if task == "reg" else linear_model.LogisticRegression(random_state=42, n_jobs=-1).fit(X_lsa, y)
 elif model == "svr":
     clf = svm.SVR().fit(X_lsa, y) if task == "reg" else svm.SVC().fit(X_lsa, y)
 elif model == "nb":
     clf = naive_bayes.MultinomialNB().fit(X_tfidf, y)
     #clf = naive_bayes.MultinomialNB().fit(X_tfidf, y) if task == "reg" else naive_bayes.MultinomialNB().fit(X_lsa, y)
+elif model == "xgb":
+    clf = XGBRegressor().fit(X_lsa,y) if task == "rel" else XGBClassifier().fit(X_lsa, y)
 
 testdf = []
 for d in glob.glob(os.path.join(path_to_files, "*")):
@@ -74,7 +77,7 @@ for d in glob.glob(os.path.join(path_to_files, "*")):
 testdf = pd.DataFrame(testdf, columns=["filename","content"])
 
 X_new_tfidf = tfidf_transformer.transform(testdf["content"])
-if model == "nb" and task == "reg":
+if model == "nb":
     predictions = clf.predict(X_new_tfidf)
 else:
     X_new_lsa = LSA.transform(X_new_tfidf)

@@ -6,7 +6,9 @@ import os
 from auxiliar import get_words, get_content
 
 counts_filename = sys.argv[1]
-path_to_files = sys.argv[2]
+htmlremover = sys.argv[2]
+path_to_files = sys.argv[3]
+
 files = glob.glob(os.path.join(path_to_files,"*"))
 minCollectionFreq = 5
 requiredToBeInNCollections = 2
@@ -61,7 +63,7 @@ df, oov = smooth_normalize(df, freq_fields, smoothing="laplace")
 
 
 for f in files:
-    text = get_content(f)
+    text = get_content(f, htmlremover)
     words = get_words(text)
     scores = classify_text(df, oov, words)
     print(",".join([os.path.basename(f)] + ['{:.3f}'.format(i) for i in scores]))

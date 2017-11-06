@@ -1,8 +1,9 @@
 import pandas as pd
 import sys
 
-fout = sys.argv[1]
-inputs = sys.argv[2:]
+makeone = True
+
+inputs = sys.argv[1:]
 
 df = pd.read_csv(inputs[0], names=["word", "freq0"])
 print("Processed: %s" % (inputs[0]))
@@ -14,6 +15,11 @@ for i in range(len(inputs)-1):
     df = pd.merge(df, odf, how="outer", on="word")
     print("Processed: %s" % (other))
 
-df.to_csv(fout, index=False)
-print("DONE! Created %s" % (fout))
+
+if makeone:
+    df.set_index("word").sum(axis=1).to_csv(sys.stdout)
+else:
+    df.fillna(0.0).to_csv(sys.stdout, index=False)
+
+print("DONE!")
 
